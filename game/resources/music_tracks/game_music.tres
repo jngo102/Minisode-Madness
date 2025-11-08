@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MusicTrack" load_steps=3 format=3 uid="uid://b5k4swjd25g86"]
+
+[ext_resource type="AudioStream" uid="uid://12t3wkhi6rmf" path="res://game/assets/music/80sTVTheme.wav" id="1_11wvf"]
+[ext_resource type="Script" uid="uid://b6x7l1sjv8r1u" path="res://game/scripts/autoload/audio_manager/music_track.gd" id="1_dpai6"]
+
+[resource]
+script = ExtResource("1_dpai6")
+music_clip = ExtResource("1_11wvf")
+metadata/_custom_type_script = "uid://b6x7l1sjv8r1u"

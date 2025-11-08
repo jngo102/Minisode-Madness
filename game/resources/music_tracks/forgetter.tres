@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MusicTrack" load_steps=3 format=3 uid="uid://e5wwp7khu1s7"]
+
+[ext_resource type="AudioStream" uid="uid://cvhkmanos5bhg" path="res://game/assets/music/forgetter.wav" id="1_6usq2"]
+[ext_resource type="Script" uid="uid://b6x7l1sjv8r1u" path="res://game/scripts/autoload/audio_manager/music_track.gd" id="1_8nvbr"]
+
+[resource]
+script = ExtResource("1_8nvbr")
+music_clip = ExtResource("1_6usq2")
+metadata/_custom_type_script = "uid://b6x7l1sjv8r1u"

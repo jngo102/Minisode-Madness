@@ -1,6 +1,6 @@
 class_name RedVox extends MinigameLevel
 
-@export var music: AudioStream
+@export var music: MusicTrack
 @export var lyrics: String
 
 @onready var margin_container: MarginContainer = $margin_container
@@ -45,10 +45,9 @@ func _ready() -> void:
 	await super._ready()
 	await get_tree().create_timer(1, false).timeout
 	_start_game()
-	MinigameManager.start(music.get_length())
-	var player: AudioStreamPlayer2D = AudioManager.play_clip(music)
-	player.finished.connect(_on_player_finish)
-	create_tween().tween_property(player, "volume_db", AudioManager.sfx_volume, 0.5).from(-60).set_trans(Tween.TRANS_LINEAR)
+	MinigameManager.start(music.music_clip.get_length())
+	AudioManager.play_music(music)
+	AudioManager.current_music_player.finished.connect(_on_player_finish)
 	var lyric_words = lyrics.split(" ")
 	for i in range(0, num_words_to_type):
 		var word_index: int = randi() % (len(lyric_words) - 1)
@@ -112,5 +111,6 @@ func lose() -> void:
 	super.lose()
 
 func _on_player_finish() -> void:
+	MinigameManager.play_game_music()
 	if label_index < len(labels_to_type):
 		lose()

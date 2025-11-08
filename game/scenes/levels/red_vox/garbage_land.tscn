@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4i1l2pvqx7or"]
 
 [ext_resource type="PackedScene" uid="uid://b7ke5igvodqf3" path="res://game/scenes/levels/red_vox/red_vox.tscn" id="1_7log1"]
-[ext_resource type="AudioStream" uid="uid://d2efjvtw5r6g5" path="res://game/assets/music/garbage_land.wav" id="2_byi8w"]
+[ext_resource type="Resource" uid="uid://doaspd4bfak0o" path="res://game/resources/music_tracks/garbage_land.tres" id="2_2c7cg"]
 [ext_resource type="Texture2D" uid="uid://ck5s004ataqhw" path="res://game/assets/art/background/garbage_land.jpg" id="3_2c7cg"]
 
 [node name="garbage_land" instance=ExtResource("1_7log1")]
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-music = ExtResource("2_byi8w")
+music = ExtResource("2_2c7cg")
 lyrics = "a piece of pastrami half eaten wonton living in a bar playing karaoke songs"
 
 [node name="background" parent="." index="0"]

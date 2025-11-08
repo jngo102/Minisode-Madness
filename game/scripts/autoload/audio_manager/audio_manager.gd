@@ -2,7 +2,7 @@
 extends Node
 
 ## The volume in decibels at which audio is not perceived
-const AUDIO_OFF_DB: float = -60
+var audio_off_db: float = ProjectSettings.get_setting("audio/buses/channel_disable_threshold_db")
 
 ## The prefab to instantiate when playing a one shot clip
 @export var audio_player_prefab: PackedScene
@@ -21,7 +21,7 @@ var current_track: MusicTrack
 
 ## The currently running tween for adjusting volume fade between music tracks
 var volume_tween: Tween
-	
+
 ## Music volume combined with master volume
 var music_volume: float:
 	get:
@@ -47,10 +47,10 @@ func play_clip(clip: AudioStream, pitch_min: float = 1, pitch_max: float = 1) ->
 	return audio_player
 
 ## Play a music track, fading out from the current track into the new track
-func play_music(track: MusicTrack, fade_time: float = 2, immediate: bool = false) -> void:
+func play_music(track: MusicTrack, start_time: float = 0, fade_time: float = 0.5, immediate: bool = false) -> void:
 	# Immediately play music if nothing is currently playing (or if immediate specified)
 	current_track = track
-	if not current_music_player.stream or immediate:
+	if immediate:
 		current_music_player.set_stream(track.music_clip)
 		current_music_player.play()
 		return
@@ -62,15 +62,13 @@ func play_music(track: MusicTrack, fade_time: float = 2, immediate: bool = false
 		volume_tween.kill()
 	volume_tween = create_tween()
 	volume_tween.finished.connect(on_volume_tween_finished)
-	upcoming_music_player.play(current_music_player.get_playback_position())
-	volume_tween.tween_property(current_music_player, "volume_db", AUDIO_OFF_DB, fade_time) \
-		.from(music_volume) \
-		.set_trans(Tween.TRANS_EXPO) \
-		.set_ease(Tween.EASE_IN)
+	upcoming_music_player.play(start_time)
+	volume_tween.tween_property(current_music_player, "volume_db", audio_off_db, fade_time) \
+		.from_current() \
+		.set_trans(Tween.TRANS_EXPO)
 	volume_tween.parallel().tween_property(upcoming_music_player, "volume_db", music_volume, fade_time) \
-		.from(AUDIO_OFF_DB) \
-		.set_trans(Tween.TRANS_EXPO) \
-		.set_ease(Tween.EASE_OUT)
+		.from(audio_off_db) \
+		.set_trans(Tween.TRANS_EXPO)
 
 ## Stop the currently playing music
 func stop_music() -> void:
@@ -83,12 +81,6 @@ func stop_music() -> void:
 ## Update the current music volume
 func update_music_volume() -> void:
 	current_music_player.volume_db = music_volume
-
-func _on_current_music_player_finished() -> void:
-	current_music_player.play()
-
-func _on_upcoming_music_player_finished() -> void:
-	upcoming_music_player.play()
 
 ## Callback for when the volume tween finishes
 func on_volume_tween_finished() -> void:

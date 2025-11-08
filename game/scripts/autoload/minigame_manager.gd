@@ -4,6 +4,8 @@ extends Node
 
 @onready var level_timer: Timer = $level_timer
 
+var bg_track: MusicTrack = preload("uid://b5k4swjd25g86")
+
 var current_level: MinigameLevel
 
 var level_duration: float:
@@ -24,6 +26,13 @@ func load_random_level() -> void:
 		next_level = levels.values()[level_index]
 	current_level = await SceneManager.change_scene(next_level)
 	current_level.game_ended.connect(_on_game_end)
+	play_game_music()
+
+func play_game_music() -> void:
+	var start_time: float = 0
+	if AudioManager.current_track != null:
+		start_time = fmod(Time.get_ticks_msec() / 1000, bg_track.music_clip.get_length())
+	AudioManager.play_music(bg_track, start_time)
 
 func start(time: float = 8) -> void:
 	level_timer.start(time)

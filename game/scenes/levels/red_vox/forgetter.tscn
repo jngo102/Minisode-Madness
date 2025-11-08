@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://6dvphsmyrna7"]
 
 [ext_resource type="PackedScene" uid="uid://b7ke5igvodqf3" path="res://game/scenes/levels/red_vox/red_vox.tscn" id="1_r6o8s"]
-[ext_resource type="AudioStream" uid="uid://cvhkmanos5bhg" path="res://game/assets/music/forgetter.wav" id="2_ad3qg"]
+[ext_resource type="Resource" uid="uid://e5wwp7khu1s7" path="res://game/resources/music_tracks/forgetter.tres" id="2_ad3qg"]
 [ext_resource type="Texture2D" uid="uid://bdd4ljivk8m2a" path="res://game/assets/art/background/forgetter.jpg" id="2_qns3m"]
 
 [node name="forgetter" instance=ExtResource("1_r6o8s")]

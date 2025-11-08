@@ -10,8 +10,10 @@ class_name MainMenu extends Control
 ## Warning for whether the player really wants to exit the game
 @onready var _quit_warning: VBoxContainer = $quit_warning
 
+var menu_music: MusicTrack = preload("uid://c0dxy53i8aplb")
+
 func _ready() -> void:
-	AudioManager.stop_music()
+	AudioManager.play_music(menu_music, 0, 2)
 	if OS.get_name() == "Web":
 		_quit_button.hide()
 	_menu_buttons.grab_focus()
