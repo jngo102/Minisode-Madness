@@ -11,11 +11,9 @@ var main_menu_scene: PackedScene = preload("uid://vstl3bg568s7")
 ## Parent container of menu buttons list
 @onready var margin_container: MarginContainer = $margin_container
 ## Parent of the main pause menu buttons
-@onready var menu_buttons: VBoxContainer = $margin_container/menu_buttons
-## UI for configuring game settings
-@onready var settings_ui: Control = $settings_ui
+@onready var menu_buttons: VBoxContainer = margin_container.get_node_or_null("menu_buttons")
 ## A confirmation warning that appears when quitting the game
-@onready var quit_warning: VBoxContainer = $margin_container/quit_warning
+@onready var quit_warning: VBoxContainer = margin_container.get_node_or_null("quit_warning")
 
 ## Only allow closing while an animation is not playing
 var can_toggle: bool:
@@ -42,7 +40,6 @@ func close() -> void:
 		return
 	Input.mouse_mode = last_mouse_mode
 	animator.play("close")
-	settings_ui.hide()
 	_on_quit_warning_quit_canceled()
 
 func toggle() -> void:
@@ -64,16 +61,9 @@ func _on_animator_animation_finished(anim_name: String) -> void:
 func _on_resume_button_pressed() -> void:
 	close()
 
-func _on_settings_button_pressed() -> void:
-	margin_container.hide()
-	settings_ui.show()
-
 func _on_quit_button_pressed() -> void:
 	menu_buttons.hide()
 	quit_warning.show()
-
-func _on_settings_ui_hidden():
-	margin_container.show()
 
 func _on_quit_warning_quit_confirmed() -> void:
 	close()

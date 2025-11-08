@@ -16,14 +16,12 @@ theme_override_constants/separation = 64
 alignment = 1
 script = ExtResource("1_0hhcf")
 
-[node name="quit_warning" type="RichTextLabel" parent="."]
+[node name="quit_warning" type="Label" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
-bbcode_enabled = true
-text = "[center]
-
-
-Are you sure you want to quit?[/center]"
+text = "Are you sure you want to quit?"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="center_container" type="CenterContainer" parent="."]
 layout_mode = 2

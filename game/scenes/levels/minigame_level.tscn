@@ -9,18 +9,21 @@ outline_size = 16
 outline_color = Color(0, 0, 0, 1)
 
 [node name="minigame_level" type="Control"]
+use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_1igpm")
 
 [node name="level_timer" parent="." instance=ExtResource("2_55ec7")]
+use_parent_material = true
 layout_mode = 1
 offset_left = 544.0
-offset_top = 384.0
+offset_top = 32.0
 offset_right = 544.0
-offset_bottom = 384.0
+offset_bottom = 32.0
 
 [node name="label" type="Label" parent="."]
+use_parent_material = true
 layout_mode = 0
 offset_left = 60.0
 offset_top = -128.0

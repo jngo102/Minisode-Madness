@@ -21,7 +21,11 @@ func _ready() -> void:
 func _on_start_button_pressed() -> void:
 	MinigameManager.load_random_level()
 
+func _on_credits_button_pressed() -> void:
+	pass # Replace with function body.
+
 func _on_quit_button_pressed() -> void:
+	print("SHOW QUIT")
 	_margin_container.hide()
 	_quit_warning.show()
 

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://8agf2mc41tgx" path="res://game/scenes/ui/quit_warning.tscn" id="3_eripy"]
 
 [node name="main_menu" type="Control"]
+use_parent_material = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +21,7 @@ script = ExtResource("1_wmvsf")
 [node name="animator" type="AnimationPlayer" parent="."]
 
 [node name="color_rect" type="ColorRect" parent="."]
+use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,6 +31,7 @@ grow_vertical = 2
 color = Color(0.74622166, 0, 0.34369737, 1)
 
 [node name="margin_container" type="MarginContainer" parent="."]
+use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,34 +45,35 @@ theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
 [node name="menu_buttons" type="VBoxContainer" parent="margin_container"]
+use_parent_material = true
 layout_mode = 2
 focus_mode = 2
 alignment = 1
 script = ExtResource("2_dtwp4")
 
 [node name="start_button" parent="margin_container/menu_buttons" instance=ExtResource("1_7ds0w")]
+use_parent_material = true
 layout_mode = 2
 text = "Start"
 
+[node name="credits_button" parent="margin_container/menu_buttons" instance=ExtResource("1_7ds0w")]
+use_parent_material = true
+layout_mode = 2
+text = "Credits"
+
 [node name="quit_button" parent="margin_container/menu_buttons" instance=ExtResource("1_7ds0w")]
+use_parent_material = true
 layout_mode = 2
 text = "Exit Game"
 
 [node name="quit_warning" parent="." instance=ExtResource("3_eripy")]
 visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 1856.0
-offset_bottom = 1016.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
 
 [connection signal="pressed" from="margin_container/menu_buttons/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="visibility_changed" from="margin_container/menu_buttons/start_button" to="." method="_on_start_button_visibility_changed"]
+[connection signal="pressed" from="margin_container/menu_buttons/credits_button" to="." method="_on_credits_button_pressed"]
+[connection signal="visibility_changed" from="margin_container/menu_buttons/credits_button" to="." method="_on_start_button_visibility_changed"]
 [connection signal="pressed" from="margin_container/menu_buttons/quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="quit_canceled" from="quit_warning" to="." method="_on_quit_warning_quit_canceled"]
 [connection signal="quit_confirmed" from="quit_warning" to="." method="_on_quit_warning_quit_confirmed"]
