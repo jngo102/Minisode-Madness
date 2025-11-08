@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7efyr5igynpq"]
+
+[ext_resource type="Script" uid="uid://bjmmkuwuns206" path="res://game/scripts/ui/transition_screen.gd" id="2_oxbg6"]
+[ext_resource type="VideoStream" uid="uid://sum3f7mfl8q3" path="res://game/assets/art/ui/static.ogv" id="4_oxbg6"]
+
+[node name="transition_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_oxbg6")
+
+[node name="video_player" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("4_oxbg6")
+
+[connection signal="finished" from="video_player" to="." method="_on_video_player_finished"]

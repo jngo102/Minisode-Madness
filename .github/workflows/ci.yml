@@ -1,0 +1,89 @@
+name: Export and Publish
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [main]
+jobs:
+  export_game:
+    runs-on: ubuntu-latest
+    name: Export game
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y p7zip-full wine64
+      - name: Get Godot version
+        id: get_godot_version
+        run: |
+          query_start="config\/features=PackedStringArray\(\""
+          query_end="\", \".*\"\)"
+          grep_query="^$query_start[0-9]\.[0-9](\.[0-9])?$query_end$"
+          version=$(grep --perl-regexp "$query_start" project.godot | sed --regexp-extended "s#$query_start|$query_end##g")
+          echo "version=$version" >> $GITHUB_OUTPUT
+      - name: Export
+        id: export
+        uses: firebelley/godot-export@v6.0.0
+        with:
+          godot_executable_download_url: https://github.com/godotengine/godot-builds/releases/download/${{ steps.get_godot_version.outputs.version }}-stable/Godot_v${{ steps.get_godot_version.outputs.version }}-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/${{ steps.get_godot_version.outputs.version }}-stable/Godot_v${{ steps.get_godot_version.outputs.version }}-stable_export_templates.tpz
+          relative_project_path: ./
+          archive_output: true
+          verbose: true
+          wine_path: ${{ steps.get_wine_path.outputs.WINE_PATH }}
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts
+          path: ${{ steps.export.outputs.archive_directory }}/*
+  create-release:
+    needs: export_game
+    if: success() && github.ref == 'refs/heads/main'
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download artifacts
+        id: download
+        uses: actions/download-artifact@v4
+        with:
+          name: artifacts
+      - name: Get version
+        id: get_version
+        run: |
+          query="config\/version="
+          version=$(grep "$query" project.godot | sed --expression "s/$query//" --expression 's/\"//g')
+          echo "version=$version" >> $GITHUB_OUTPUT
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: true
+          tag: ${{ steps.get_version.outputs.version }}
+          artifacts: ${{ steps.download.outputs.download-path }}/*.zip
+  deploy:
+    needs: export_game
+    if: success() && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        channel: [html5, linux, osx, windows]
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: artifacts
+          path: ./
+      - name: Deploy ${{ matrix.channel }} build
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: ${{ matrix.channel }}
+          ITCH_GAME: ${{ secrets.ITCH_GAME }}
+          ITCH_USER: ${{ secrets.ITCH_USER }}
+          PACKAGE: ${{ matrix.channel }}.zip

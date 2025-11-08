@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgl2byam5vqoa"]
+
+[ext_resource type="Script" uid="uid://b1y4t7nf3ye83" path="res://game/scripts/levels/minigame_level.gd" id="1_1igpm"]
+[ext_resource type="PackedScene" uid="uid://caru3xvtlc28v" path="res://game/scenes/ui/level_timer.tscn" id="2_55ec7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_55ec7"]
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="minigame_level" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1igpm")
+
+[node name="level_timer" parent="." instance=ExtResource("2_55ec7")]
+layout_mode = 1
+offset_left = 544.0
+offset_top = 384.0
+offset_right = 544.0
+offset_bottom = 384.0
+
+[node name="label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -128.0
+offset_right = 180.0
+offset_bottom = -77.0
+label_settings = SubResource("LabelSettings_55ec7")
+horizontal_alignment = 1
+vertical_alignment = 1

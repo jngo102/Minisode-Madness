@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7ke5igvodqf3"]
+
+[ext_resource type="PackedScene" uid="uid://bgl2byam5vqoa" path="res://game/scenes/levels/minigame_level.tscn" id="1_mgfxw"]
+[ext_resource type="Script" uid="uid://dlt62ckkk8dj1" path="res://game/scripts/levels/red_vox.gd" id="1_qumq0"]
+
+[node name="red_vox" instance=ExtResource("1_mgfxw")]
+script = ExtResource("1_qumq0")
+music = null
+lyrics = ""
+instruction = "Type!"
+
+[node name="background" type="TextureRect" parent="." index="0"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="label" parent="." index="2"]
+offset_left = 260.0
+offset_right = 380.0
+scale = Vector2(2.47, 2.47)
+
+[node name="margin_container" type="MarginContainer" parent="." index="3"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -58.0
+offset_right = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="lyrics_container" type="VBoxContainer" parent="margin_container" index="0"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="lyrics" type="HBoxContainer" parent="margin_container/lyrics_container" index="0"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8

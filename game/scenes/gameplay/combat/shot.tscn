@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8vq7o15kshs6"]
+
+[ext_resource type="Texture2D" uid="uid://x81bc6erpc3j" path="res://game/assets/art/ui/gun/shot.png" id="1_krqsu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e8roh"]
+radius = 48.0
+
+[node name="shot" type="Area2D"]
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_e8roh")
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_krqsu")

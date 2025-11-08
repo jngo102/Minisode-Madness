@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4apxkm0xtxpr"]
+
+[ext_resource type="PackedScene" uid="uid://vstl3bg568s7" path="res://game/scenes/levels/main_menu/main_menu.tscn" id="1_5cikp"]
+[ext_resource type="Script" uid="uid://bng53nxyo6ib3" path="res://game/scripts/main.gd" id="1_h7yf5"]
+
+[node name="main" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_h7yf5")
+
+[node name="screen_container" type="SubViewportContainer" parent="."]
+layout_mode = 2
+
+[node name="screen" type="SubViewport" parent="screen_container"]
+disable_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(640, 480)
+size_2d_override = Vector2i(640, 480)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="main_menu" parent="screen_container/screen" instance=ExtResource("1_5cikp")]
