@@ -1,58 +1,106 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3neoogxgx3lr"]
+[gd_scene load_steps=12 format=3 uid="uid://b3neoogxgx3lr"]
 
 [ext_resource type="PackedScene" uid="uid://bgl2byam5vqoa" path="res://game/scenes/levels/minigame_level.tscn" id="1_qn388"]
 [ext_resource type="Script" uid="uid://dm0qp8nhdqvrw" path="res://game/scripts/levels/mute_the_game/mute_the_game.gd" id="2_j2tlk"]
-[ext_resource type="Texture2D" uid="uid://cy0wqv8551top" path="res://game/assets/art/ui/blank.png" id="2_l2sal"]
-[ext_resource type="Texture2D" uid="uid://esc1ep35hgb2" path="res://icon.svg" id="4_4j4ro"]
-[ext_resource type="AudioStream" uid="uid://psyam32srtqq" path="res://game/assets/sfx/kill_each_other.mp3" id="5_dg8il"]
+[ext_resource type="Texture2D" uid="uid://ce4582mti1rkg" path="res://game/assets/art/world/yapper/mute3.png" id="4_x4de5"]
+[ext_resource type="Texture2D" uid="uid://vrdlud6wbw80" path="res://game/assets/art/world/yapper/mute.png" id="5_505sx"]
+[ext_resource type="Texture2D" uid="uid://bywdtwv6txogj" path="res://game/assets/art/world/yapper/mute2.png" id="6_nrn3w"]
+[ext_resource type="Texture2D" uid="uid://c63be3045626l" path="res://game/assets/art/world/yapper/mute-quiet.png" id="7_505sx"]
+[ext_resource type="AudioStream" uid="uid://b6rx5ay2x3wfl" path="res://game/assets/sfx/yap.mp3" id="7_x4de5"]
+
+[sub_resource type="Animation" id="Animation_l2bs3"]
+resource_name = "yap"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_x4de5"), ExtResource("5_505sx"), ExtResource("4_x4de5"), ExtResource("6_nrn3w")]
+}
+
+[sub_resource type="Animation" id="Animation_nrn3w"]
+resource_name = "mute"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_505sx")]
+}
+
+[sub_resource type="Animation" id="Animation_x4de5"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("./sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_x4de5")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kxxxs"]
+_data = {
+&"RESET": SubResource("Animation_x4de5"),
+&"mute": SubResource("Animation_nrn3w"),
+&"yap": SubResource("Animation_l2bs3")
+}
 
 [node name="mute_the_game" instance=ExtResource("1_qn388")]
 script = ExtResource("2_j2tlk")
 instruction = "Mute!"
+control_scheme = 1
 
-[node name="ui" type="CanvasLayer" parent="." index="0"]
+[node name="yapper" type="Node2D" parent="." index="3"]
+position = Vector2(281, 267)
 
-[node name="pause_button" type="Button" parent="ui" index="0"]
-visible = false
-offset_right = 64.0
-offset_bottom = 64.0
+[node name="sprite" type="Sprite2D" parent="yapper" index="0"]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_x4de5")
 
-[node name="margins" type="MarginContainer" parent="ui/pause_button" index="0"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="anim" type="AnimationPlayer" parent="yapper" index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_kxxxs")
+}
 
-[node name="bars_container" type="HBoxContainer" parent="ui/pause_button/margins" index="0"]
-layout_mode = 2
-theme_override_constants/separation = 12
+[node name="voice" type="AudioStreamPlayer2D" parent="yapper" index="2"]
+position = Vector2(-6, -2)
+stream = ExtResource("7_x4de5")
+pitch_scale = 2.0
+bus = &"SFX"
+parameters/looping = true
 
-[node name="left_bar" type="TextureRect" parent="ui/pause_button/margins/bars_container" index="0"]
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("2_l2sal")
-
-[node name="right_bar" type="TextureRect" parent="ui/pause_button/margins/bars_container" index="1"]
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("2_l2sal")
-
-[node name="pause_menu" type="Panel" parent="ui" index="1"]
+[node name="panel" type="Panel" parent="yapper" index="3"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -150.0
-offset_bottom = 90.0
+offset_left = -159.0
+offset_top = -185.0
+offset_right = 161.0
+offset_bottom = -121.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="margins" type="MarginContainer" parent="ui/pause_menu" index="0"]
+[node name="margins" type="MarginContainer" parent="yapper/panel" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,77 +108,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="settings" type="VBoxContainer" parent="ui/pause_menu/margins" index="0"]
+[node name="voice" type="HBoxContainer" parent="yapper/panel/margins" index="0"]
 layout_mode = 2
 
-[node name="settings_title" type="Label" parent="ui/pause_menu/margins/settings" index="0"]
-layout_mode = 2
-text = "Settings"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="sliders" type="VBoxContainer" parent="ui/pause_menu/margins/settings" index="1"]
-layout_mode = 2
-
-[node name="music" type="HBoxContainer" parent="ui/pause_menu/margins/settings/sliders" index="0"]
-layout_mode = 2
-
-[node name="setting_label" type="Label" parent="ui/pause_menu/margins/settings/sliders/music" index="0"]
-layout_mode = 2
-text = "Music"
-
-[node name="value_slider" type="HSlider" parent="ui/pause_menu/margins/settings/sliders/music" index="1"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.01
-value = 1.0
-
-[node name="voice" type="HBoxContainer" parent="ui/pause_menu/margins/settings/sliders" index="1"]
-layout_mode = 2
-
-[node name="setting_label" type="Label" parent="ui/pause_menu/margins/settings/sliders/voice" index="0"]
+[node name="setting_label" type="Label" parent="yapper/panel/margins/voice" index="0"]
 layout_mode = 2
 text = "Voice"
 
-[node name="value_slider" type="HSlider" parent="ui/pause_menu/margins/settings/sliders/voice" index="1"]
+[node name="value_slider" type="HSlider" parent="yapper/panel/margins/voice" index="1"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 min_value = -60.0
 max_value = 0.0
 
-[node name="speed" type="HBoxContainer" parent="ui/pause_menu/margins/settings/sliders" index="2"]
-layout_mode = 2
-
-[node name="setting_label" type="Label" parent="ui/pause_menu/margins/settings/sliders/speed" index="0"]
-layout_mode = 2
-text = "Speed"
-
-[node name="value_slider" type="HSlider" parent="ui/pause_menu/margins/settings/sliders/speed" index="1"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 3.0
-step = 0.01
-value = 3.0
-
-[node name="volume_bar" parent="." index="3"]
-offset_left = 96.0
-offset_right = 168.0
-
-[node name="annoying_thing" type="Sprite2D" parent="." index="4"]
-position = Vector2(301, 276)
-texture = ExtResource("4_4j4ro")
-
-[node name="voice" type="AudioStreamPlayer2D" parent="annoying_thing" index="0"]
-position = Vector2(-6, -2)
-stream = ExtResource("5_dg8il")
-bus = &"SFX"
-parameters/looping = true
-
-[connection signal="pressed" from="ui/pause_button" to="." method="_on_pause_button_pressed"]
-[connection signal="value_changed" from="ui/pause_menu/margins/settings/sliders/music/value_slider" to="." method="_on_music_value_slider_value_changed"]
-[connection signal="value_changed" from="ui/pause_menu/margins/settings/sliders/voice/value_slider" to="." method="_on_voice_value_slider_value_changed"]
-[connection signal="value_changed" from="ui/pause_menu/margins/settings/sliders/speed/value_slider" to="." method="_on_speed_value_slider_value_changed"]
+[connection signal="value_changed" from="yapper/panel/margins/voice/value_slider" to="." method="_on_value_slider_value_changed"]

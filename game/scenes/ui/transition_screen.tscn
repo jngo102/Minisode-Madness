@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7efyr5igynpq"]
+[gd_scene load_steps=9 format=3 uid="uid://b7efyr5igynpq"]
 
+[ext_resource type="Script" uid="uid://b6x7l1sjv8r1u" path="res://game/scripts/autoload/audio_manager/music_track.gd" id="2_gvatp"]
 [ext_resource type="Script" uid="uid://bjmmkuwuns206" path="res://game/scripts/ui/transition_screen.gd" id="2_oxbg6"]
-[ext_resource type="VideoStream" uid="uid://sum3f7mfl8q3" path="res://game/assets/art/ui/static.ogv" id="4_oxbg6"]
+[ext_resource type="PackedScene" uid="uid://bwsi3gq7cj1qq" path="res://game/scenes/ui/volume/volume_bar.tscn" id="3_ijvw4"]
+[ext_resource type="Resource" uid="uid://br8006da5d2vx" path="res://game/resources/music_tracks/main1.tres" id="3_xfiq6"]
+[ext_resource type="Resource" uid="uid://bxyqjwmw7ttcn" path="res://game/resources/music_tracks/main2.tres" id="4_a4ssl"]
+[ext_resource type="Resource" uid="uid://citr7xpqnyjcr" path="res://game/resources/music_tracks/main3.tres" id="5_073ry"]
+[ext_resource type="Resource" uid="uid://c4wwou03y1rqy" path="res://game/resources/music_tracks/main4.tres" id="6_3itgs"]
+[ext_resource type="VideoStream" uid="uid://jnsqg2s656l5" path="res://game/assets/videos/static_long.ogv" id="7_gvatp"]
 
 [node name="transition_screen" type="Control"]
 layout_mode = 3
@@ -19,11 +25,23 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("2_oxbg6")
+music_list = Array[ExtResource("2_gvatp")]([ExtResource("3_xfiq6"), ExtResource("4_a4ssl"), ExtResource("5_073ry"), ExtResource("6_3itgs")])
 
 [node name="video_player" type="VideoStreamPlayer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-stream = ExtResource("4_oxbg6")
+stream = ExtResource("7_gvatp")
+
+[node name="volume_bar" parent="." instance=ExtResource("3_ijvw4")]
+layout_mode = 1
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 104.0
+offset_bottom = 58.0
+grow_vertical = 1
 
 [connection signal="finished" from="video_player" to="." method="_on_video_player_finished"]

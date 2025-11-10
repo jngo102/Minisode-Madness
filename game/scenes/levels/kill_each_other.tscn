@@ -2,17 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://bgl2byam5vqoa" path="res://game/scenes/levels/minigame_level.tscn" id="1_3tlnc"]
 [ext_resource type="Script" uid="uid://b1ve581e8jr4a" path="res://game/scripts/levels/kill_each_other/kill_each_other.gd" id="1_5enco"]
-[ext_resource type="Texture2D" uid="uid://cy0wqv8551top" path="res://game/assets/art/ui/blank.png" id="1_cnkfn"]
 [ext_resource type="Texture2D" uid="uid://0c46f5lobt2" path="res://game/assets/art/background/kill_each_other.jpg" id="1_vnhpb"]
-[ext_resource type="Texture2D" uid="uid://dga31xenx362t" path="res://game/assets/art/actors/cowboy/cowboy0000.png" id="2_e6ud1"]
+[ext_resource type="Texture2D" uid="uid://ctt5aghfou88j" path="res://game/assets/art/background/desertbg.png" id="3_efwyj"]
 [ext_resource type="Script" uid="uid://pw33phlkuxdt" path="res://game/scripts/levels/kill_each_other/cowboy.gd" id="3_i8160"]
 [ext_resource type="Texture2D" uid="uid://ctst7e0r0fra1" path="res://game/assets/art/world/cactus/cactus1.png" id="4_d7sj3"]
 [ext_resource type="Texture2D" uid="uid://qj5qno7frr37" path="res://game/assets/art/world/cactus/cactus2.png" id="5_ds6le"]
+[ext_resource type="Texture2D" uid="uid://3xfq7famaty" path="res://game/assets/art/actors/cowboy/cowboy.png" id="6_86qfd"]
 [ext_resource type="Texture2D" uid="uid://dtrvcggklpvpv" path="res://game/assets/art/world/circle.png" id="6_d7sj3"]
-[ext_resource type="Texture2D" uid="uid://b2a4wtndhep1c" path="res://game/assets/art/actors/cowboy/cowboy0001.png" id="6_e8roh"]
-[ext_resource type="Texture2D" uid="uid://bo1vxqpb1ucv6" path="res://game/assets/art/actors/cowboy/cowboy0002.png" id="8_3tlnc"]
-[ext_resource type="Texture2D" uid="uid://cp320kx8vphsr" path="res://game/assets/art/actors/cowboy/cowboy0003.png" id="9_86qfd"]
-[ext_resource type="Texture2D" uid="uid://x81bc6erpc3j" path="res://game/assets/art/ui/gun/shot.png" id="10_i8160"]
+[ext_resource type="Texture2D" uid="uid://bqj1ejtrys1h5" path="res://game/assets/art/actors/cowboy/Cowboy5.png" id="8_86qfd"]
+[ext_resource type="Texture2D" uid="uid://blxk4ripyxk01" path="res://game/assets/art/actors/cowboy/Cowboy33.png" id="9_3tlnc"]
+[ext_resource type="Texture2D" uid="uid://cwg36rc8ijikr" path="res://game/assets/art/actors/cowboy/Cowboy 44.png" id="9_86qfd"]
+[ext_resource type="Texture2D" uid="uid://sgbmbp4g4sao" path="res://game/assets/art/actors/cowboy/cowboy2.png" id="9_efwyj"]
 
 [sub_resource type="Animation" id="Animation_86qfd"]
 resource_name = "RESET"
@@ -26,19 +26,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_e6ud1")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("shot:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
+"values": [ExtResource("6_86qfd")]
 }
 
 [sub_resource type="Animation" id="Animation_efwyj"]
@@ -53,24 +41,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("8_3tlnc"), ExtResource("9_86qfd")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("shot:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
+"values": [ExtResource("9_efwyj"), ExtResource("8_86qfd")]
 }
 
 [sub_resource type="Animation" id="Animation_i8160"]
 resource_name = "draw"
-length = 0.25
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -78,22 +54,10 @@ tracks/0/path = NodePath("sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_e8roh")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("shot:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("10_i8160"), null]
+"values": [ExtResource("9_86qfd"), ExtResource("9_3tlnc")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5enco"]
@@ -111,26 +75,21 @@ script = ExtResource("1_5enco")
 min_time = 1.0
 max_time = 4.0
 instruction = "KILL EACH OTHER"
+control_scheme = 1
 
-[node name="sky" type="Sprite2D" parent="." index="0"]
+[node name="sky" type="Sprite2D" parent="." index="1"]
 self_modulate = Color(0.40532306, 0.7895826, 0.99999994, 1)
-position = Vector2(320, 240)
-scale = Vector2(320, 240)
-texture = ExtResource("1_cnkfn")
+position = Vector2(320, 225)
+scale = Vector2(1.1853837, 1.1853837)
+texture = ExtResource("3_efwyj")
 
-[node name="background" type="Sprite2D" parent="." index="1"]
-self_modulate = Color(1, 1, 1, 0.21568628)
+[node name="background" type="Sprite2D" parent="." index="2"]
+self_modulate = Color(1, 1, 1, 0)
 texture = ExtResource("1_vnhpb")
 centered = false
 
-[node name="ground" type="Sprite2D" parent="." index="2"]
-self_modulate = Color(0.8397278, 0.5974824, 0.4989953, 1)
-position = Vector2(320, 420)
-scale = Vector2(320, 64)
-texture = ExtResource("1_cnkfn")
-
 [node name="cowboy" type="Node2D" parent="." index="3"]
-position = Vector2(309, 334)
+position = Vector2(316, 287)
 script = ExtResource("3_i8160")
 
 [node name="anim" type="AnimationPlayer" parent="cowboy" index="0"]
@@ -139,16 +98,14 @@ libraries = {
 }
 
 [node name="sprite" type="Sprite2D" parent="cowboy" index="1"]
-texture = ExtResource("2_e6ud1")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_86qfd")
 
 [node name="hitbox" type="Area2D" parent="cowboy" index="2"]
 
 [node name="collision" type="CollisionShape2D" parent="cowboy/hitbox" index="0"]
 position = Vector2(-2, 13)
 shape = SubResource("RectangleShape2D_86qfd")
-
-[node name="shot" type="Sprite2D" parent="cowboy" index="3"]
-position = Vector2(-32, -25)
 
 [node name="cactus_1" type="Sprite2D" parent="." index="4"]
 position = Vector2(170.00002, 332.00003)
@@ -162,7 +119,7 @@ texture = ExtResource("5_ds6le")
 
 [node name="cactus_3" type="Sprite2D" parent="." index="6"]
 position = Vector2(58, 432)
-rotation = 3.1415927
+rotation = -3.1415925
 scale = Vector2(1, -1)
 texture = ExtResource("5_ds6le")
 
@@ -175,7 +132,7 @@ texture = ExtResource("6_d7sj3")
 offset_left = 0.0
 offset_right = 120.0
 
-[node name="gun_container" type="Node2D" parent="." index="11"]
+[node name="gun_container" type="Node2D" parent="." index="10"]
 
 [connection signal="shot_player" from="cowboy" to="." method="_on_cowboy_shot_player"]
 [connection signal="area_entered" from="cowboy/hitbox" to="cowboy" method="_on_hitbox_area_entered"]

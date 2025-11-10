@@ -1,6 +1,7 @@
 extends MinigameLevel
 
 @onready var ferris_wheel: FerrisWheel = $ferris_wheel
+@onready var rotate_dir: Sprite2D = $rotate_direction
 
 var cursor_scene: PackedScene = preload("uid://bbvasjlghjsv0")
 
@@ -19,4 +20,5 @@ func lose() -> void:
 
 func _on_ferris_wheel_unhinge() -> void:
 	win()
+	rotate_dir.hide()
 	MinigameManager.end_game()

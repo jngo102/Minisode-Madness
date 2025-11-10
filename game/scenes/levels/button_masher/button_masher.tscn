@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://2fxs64v10amh"]
+
+[ext_resource type="PackedScene" uid="uid://bgl2byam5vqoa" path="res://game/scenes/levels/minigame_level.tscn" id="1_676et"]
+[ext_resource type="Script" uid="uid://bskl167ax3e3w" path="res://game/scripts/levels/button_masher/button_masher.gd" id="2_sf02h"]
+
+[node name="button_masher" instance=ExtResource("1_676et")]
+script = ExtResource("2_sf02h")
+instruction = "Mash!"
+
+[node name="typed_letters" type="Label" parent="." index="4"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+vertical_alignment = 1

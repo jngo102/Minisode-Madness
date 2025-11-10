@@ -1,9 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwsi3gq7cj1qq"]
+[gd_scene load_steps=10 format=3 uid="uid://bwsi3gq7cj1qq"]
 
 [ext_resource type="Script" uid="uid://wu8osm005kqo" path="res://game/scripts/ui/volume/volume_bar.gd" id="1_isypx"]
+[ext_resource type="Texture2D" uid="uid://ef74ty62iben" path="res://game/assets/art/ui/hud/volume/volume_label.png" id="2_hkt4h"]
+[ext_resource type="Texture2D" uid="uid://bf0qbb1i77k4s" path="res://game/assets/art/ui/hud/volume/volume3.png" id="3_n3fsl"]
+[ext_resource type="Texture2D" uid="uid://tnksud4ma204" path="res://game/assets/art/ui/hud/volume/volume4.png" id="4_0j3e2"]
+[ext_resource type="Texture2D" uid="uid://cgq6icc08o42k" path="res://game/assets/art/ui/hud/volume/volume5.png" id="5_vv6na"]
+[ext_resource type="Texture2D" uid="uid://cvr0h5mbw66y3" path="res://game/assets/art/ui/hud/volume/volume6.png" id="6_84ryx"]
+[ext_resource type="Texture2D" uid="uid://dfwp3orwwrsfj" path="res://game/assets/art/ui/hud/volume/volume7.png" id="7_15exf"]
+[ext_resource type="Texture2D" uid="uid://b6txkophtimiy" path="res://game/assets/art/ui/hud/volume/volume8.png" id="8_pniay"]
+[ext_resource type="Texture2D" uid="uid://hu5v81lvqtd0" path="res://game/assets/art/ui/hud/volume/volume9.png" id="9_txufo"]
 
 [node name="volume_bar" type="VBoxContainer"]
-modulate = Color(0, 1, 0, 1)
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -13,10 +20,64 @@ grow_vertical = 2
 theme_override_constants/separation = 0
 script = ExtResource("1_isypx")
 
-[node name="label" type="Label" parent="."]
+[node name="label" type="TextureRect" parent="."]
 layout_mode = 2
-text = "Volume"
+texture = ExtResource("2_hkt4h")
 
-[node name="segments_container" type="HBoxContainer" parent="."]
+[node name="volume3" type="TextureRect" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 8
+texture = ExtResource("3_n3fsl")
+
+[node name="volume4" type="TextureRect" parent="volume3"]
+visible = false
+layout_mode = 0
+offset_left = 60.0
+offset_top = 1.0
+offset_right = 78.0
+offset_bottom = 52.0
+texture = ExtResource("4_0j3e2")
+
+[node name="volume5" type="TextureRect" parent="volume3"]
+visible = false
+layout_mode = 0
+offset_left = 82.0
+offset_top = -2.0
+offset_right = 100.0
+offset_bottom = 49.0
+texture = ExtResource("5_vv6na")
+
+[node name="volume6" type="TextureRect" parent="volume3"]
+visible = false
+layout_mode = 0
+offset_left = 103.0
+offset_top = -2.0
+offset_right = 121.0
+offset_bottom = 49.0
+texture = ExtResource("6_84ryx")
+
+[node name="volume7" type="TextureRect" parent="volume3"]
+visible = false
+layout_mode = 0
+offset_left = 126.0
+offset_top = -5.0
+offset_right = 144.0
+offset_bottom = 46.0
+texture = ExtResource("7_15exf")
+
+[node name="volume8" type="TextureRect" parent="volume3"]
+visible = false
+layout_mode = 0
+offset_left = 147.0
+offset_top = -6.0
+offset_right = 167.0
+offset_bottom = 46.0
+texture = ExtResource("8_pniay")
+
+[node name="volume9" type="TextureRect" parent="volume3"]
+visible = false
+layout_mode = 0
+offset_left = 171.0
+offset_top = -7.0
+offset_right = 191.0
+offset_bottom = 45.0
+texture = ExtResource("9_txufo")

@@ -1,5 +1,6 @@
 class_name Cowboy extends Node2D
 
+var whip_crack_clip: AudioStream = preload("uid://boqawchr5fokj")
 var shot_clip: AudioStream = preload("uid://bincgosrpahaa")
 
 @export var draw_time: float = 1
@@ -13,6 +14,7 @@ signal shot_player
 var dead: bool
 
 func draw() -> void:
+	AudioManager.play_clip(whip_crack_clip)
 	await get_tree().create_timer(draw_time, false).timeout
 	shoot()
 

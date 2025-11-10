@@ -1,8 +1,19 @@
 class_name MinigameLevel extends Control
 
+enum ControlScheme {
+	KEYS,
+	MOUSE,
+}
+
 @export var instruction: String = ""
+@export var control_scheme: ControlScheme
 
 @onready var label: Label = $label
+@onready var control: TextureRect = $control_indicator
+@onready var level_timer: LevelTimer = $level_timer
+
+var keys_texture: Texture2D = preload("uid://5gaofps6x30n")
+var mouse_texture: Texture2D = preload("uid://cnjg3mdf30pgg")
 
 signal won
 signal lost
@@ -18,6 +29,16 @@ func _ready() -> void:
 	label_tween.tween_property(label, "position", Vector2(Globals.SCREEN_WIDTH / 2 - label.size.x / 2, 64), 0.5).from(Vector2(Globals.SCREEN_WIDTH / 2 - label.size.x, -128)).set_trans(Tween.TRANS_LINEAR)
 	label_tween.parallel().tween_property(label, "scale", Vector2.ONE, 0.5).from(Vector2.ONE * 2).set_trans(Tween.TRANS_LINEAR)
 	label_tween.tween_property(label, "self_modulate", Color.TRANSPARENT, 2).from(Color.WHITE).set_trans(Tween.TRANS_LINEAR)
+	
+	match control_scheme:
+		ControlScheme.KEYS:
+			control.texture = keys_texture
+		ControlScheme.MOUSE:
+			control.texture = mouse_texture
+
+	var control_tween: Tween = create_tween()
+	control_tween.tween_property(control, "position:y", 314, 0.5).from(512).set_trans(Tween.TRANS_LINEAR)
+	control_tween.tween_property(control, "position:y", 512, 0.5).from_current().set_delay(2).set_trans(Tween.TRANS_LINEAR)
 
 func _start_game(time: float = 10, initial_wait: float = 2) -> void:
 	await get_tree().create_timer(initial_wait, false).timeout
@@ -27,6 +48,7 @@ func _start_game(time: float = 10, initial_wait: float = 2) -> void:
 	label_tween.tween_property(label, "position", Vector2(Globals.SCREEN_WIDTH / 2 - label.size.x / 2, 64), 0.25).from(Vector2(Globals.SCREEN_WIDTH / 2 - label.size.x, -128)).set_trans(Tween.TRANS_LINEAR)
 	label_tween.parallel().tween_property(label, "scale", Vector2.ONE, 0.25).from(Vector2.ONE * 2).set_trans(Tween.TRANS_LINEAR)
 	label_tween.tween_property(label, "self_modulate", Color.TRANSPARENT, 1).from(Color.WHITE).set_trans(Tween.TRANS_LINEAR)
+	level_timer.level_started = true
 	started = true
 
 func win() -> void:

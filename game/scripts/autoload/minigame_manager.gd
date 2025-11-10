@@ -2,6 +2,8 @@ extends Node
 
 @export var levels: Dictionary[String, PackedScene]
 
+@export var tracks: Dictionary[String, MusicTrack]
+
 @onready var level_timer: Timer = $level_timer
 
 var bg_track: MusicTrack = preload("uid://b5k4swjd25g86")

@@ -1,36 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://caru3xvtlc28v"]
+[gd_scene load_steps=11 format=3 uid="uid://caru3xvtlc28v"]
 
-[ext_resource type="Texture2D" uid="uid://dtrvcggklpvpv" path="res://game/assets/art/world/circle.png" id="1_4tbs1"]
 [ext_resource type="Script" uid="uid://blyewbxin3uci" path="res://game/scripts/ui/hud/level_timer.gd" id="1_ki6ov"]
-[ext_resource type="Texture2D" uid="uid://cwvp6hyhg4vs3" path="res://game/assets/art/ui/hud/stopwatch_outer.png" id="2_2880x"]
+[ext_resource type="Texture2D" uid="uid://dajk0ie2gn77g" path="res://game/assets/art/ui/bomb_timer/bomb0000.png" id="2_nx7lg"]
+[ext_resource type="Texture2D" uid="uid://c060h3aemwlef" path="res://game/assets/art/ui/bomb_timer/bomb0001.png" id="3_11muf"]
+[ext_resource type="Texture2D" uid="uid://bn8swc8xnhk6m" path="res://game/assets/art/ui/bomb_timer/bomb0002.png" id="4_yjcpl"]
+[ext_resource type="Texture2D" uid="uid://cvokxetkk552t" path="res://game/assets/art/ui/bomb_timer/bomb0003.png" id="5_3jrkv"]
+[ext_resource type="Texture2D" uid="uid://bj0725kyo8oit" path="res://game/assets/art/ui/bomb_timer/bomb0004.png" id="6_esv08"]
+[ext_resource type="Texture2D" uid="uid://8xhcd0ptyn81" path="res://game/assets/art/ui/bomb_timer/bomb0005.png" id="7_pgs8q"]
+[ext_resource type="Texture2D" uid="uid://bs11ggmqmkebg" path="res://game/assets/art/ui/bomb_timer/bomb0006.png" id="8_2n1f5"]
+[ext_resource type="Texture2D" uid="uid://clwrvm5l6etgo" path="res://game/assets/art/ui/bomb_timer/bomb0007.png" id="9_lf0pe"]
+[ext_resource type="Texture2D" uid="uid://kqojtud1rpr7" path="res://game/assets/art/ui/bomb_timer/bomb0008.png" id="10_h1h45"]
 
-[node name="level_timer" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="texture" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource("1_ki6ov")
-
-[node name="progress" type="TextureProgressBar" parent="."]
-layout_mode = 0
-offset_right = 64.0
-offset_bottom = 64.0
-pivot_offset = Vector2(0.5, 0.5)
-max_value = 1.0
-step = 0.01
-value = 1.0
-fill_mode = 5
-texture_under = ExtResource("1_4tbs1")
-texture_progress = ExtResource("1_4tbs1")
-tint_progress = Color(0, 0.8156863, 0.3254902, 1)
-
-[node name="border" type="TextureRect" parent="progress"]
-layout_mode = 0
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 80.0
-offset_bottom = 80.0
-pivot_offset = Vector2(0.5, 0.5)
-texture = ExtResource("2_2880x")
+countdown_textures = Array[Texture2D]([null, ExtResource("2_nx7lg"), ExtResource("3_11muf"), ExtResource("4_yjcpl"), ExtResource("5_3jrkv"), ExtResource("6_esv08"), ExtResource("7_pgs8q"), ExtResource("8_2n1f5"), ExtResource("9_lf0pe"), ExtResource("10_h1h45")])
