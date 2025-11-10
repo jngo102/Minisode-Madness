@@ -46,7 +46,7 @@ func _input(event: InputEvent) -> void:
 					pause_menu.open()
 			else:
 				open_ui(PauseMenu)
-
+ 
 ## Close a UI
 func close_ui(ui: GDScript) -> void:
 	var found_uis = opened_uis.filter(func(opened_ui):

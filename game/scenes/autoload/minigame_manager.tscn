@@ -1,20 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://mtf2q6k28wlo"]
+[gd_scene load_steps=5 format=3 uid="uid://mtf2q6k28wlo"]
 
 [ext_resource type="Script" uid="uid://djywe22tryyxf" path="res://game/scripts/autoload/minigame_manager.gd" id="1_iry60"]
-[ext_resource type="PackedScene" uid="uid://c8i4ji10tq5we" path="res://game/scenes/levels/red_vox/in_the_garden.tscn" id="2_icbmg"]
-[ext_resource type="PackedScene" uid="uid://b4i1l2pvqx7or" path="res://game/scenes/levels/red_vox/garbage_land.tscn" id="3_8uvlj"]
-[ext_resource type="PackedScene" uid="uid://6dvphsmyrna7" path="res://game/scenes/levels/red_vox/forgetter.tscn" id="4_8g60q"]
 [ext_resource type="PackedScene" uid="uid://cw8q4k0bfdklc" path="res://game/scenes/levels/kill_each_other.tscn" id="5_l5xfl"]
-[ext_resource type="PackedScene" uid="uid://b1grdt7id5w50" path="res://game/scenes/levels/mute_the_game.tscn" id="6_tdafb"]
+[ext_resource type="PackedScene" uid="uid://b3neoogxgx3lr" path="res://game/scenes/levels/mute_the_game/mute_the_game.tscn" id="6_8uvlj"]
+[ext_resource type="PackedScene" uid="uid://crsi3glq0xtda" path="res://game/scenes/levels/spin_the_wheel/spin_the_wheel.tscn" id="7_8g60q"]
 
 [node name="minigame_manager" type="Node"]
 script = ExtResource("1_iry60")
 levels = Dictionary[String, PackedScene]({
-"forgetter": ExtResource("4_8g60q"),
-"garbage_land": ExtResource("3_8uvlj"),
-"in_the_garden": ExtResource("2_icbmg"),
 "kill_each_other": ExtResource("5_l5xfl"),
-"mute_the_game": ExtResource("6_tdafb")
+"mute_the_game": ExtResource("6_8uvlj"),
+"spin_the_wheel": ExtResource("7_8g60q")
 })
 
 [node name="level_timer" type="Timer" parent="."]

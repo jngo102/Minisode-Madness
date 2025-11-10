@@ -44,8 +44,7 @@ var typed_chars: String
 func _ready() -> void:
 	await super._ready()
 	await get_tree().create_timer(1, false).timeout
-	_start_game()
-	MinigameManager.start(music.music_clip.get_length())
+	_start_game(music.music_clip.get_length())
 	AudioManager.play_music(music)
 	AudioManager.current_music_player.finished.connect(_on_player_finish)
 	var lyric_words = lyrics.split(" ")

@@ -175,5 +175,7 @@ texture = ExtResource("6_d7sj3")
 offset_left = 0.0
 offset_right = 120.0
 
+[node name="gun_container" type="Node2D" parent="." index="11"]
+
 [connection signal="shot_player" from="cowboy" to="." method="_on_cowboy_shot_player"]
 [connection signal="area_entered" from="cowboy/hitbox" to="cowboy" method="_on_hitbox_area_entered"]

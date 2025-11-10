@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwsi3gq7cj1qq"]
+
+[ext_resource type="Script" uid="uid://wu8osm005kqo" path="res://game/scripts/ui/volume/volume_bar.gd" id="1_isypx"]
+
+[node name="volume_bar" type="VBoxContainer"]
+modulate = Color(0, 1, 0, 1)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_right = 72.0
+offset_bottom = 26.0
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_isypx")
+
+[node name="label" type="Label" parent="."]
+layout_mode = 2
+text = "Volume"
+
+[node name="segments_container" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8

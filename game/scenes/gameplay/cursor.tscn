@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbvasjlghjsv0"]
+
+[ext_resource type="Texture2D" uid="uid://dtrvcggklpvpv" path="res://game/assets/art/world/circle.png" id="1_mcfxl"]
+[ext_resource type="Script" uid="uid://cttehn3y6hru8" path="res://game/scripts/gameplay/mouse_tracker.gd" id="1_t6l5p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fjitu"]
+radius = 32.0
+
+[node name="cursor" type="Area2D"]
+
+[node name="sprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.15637359, 0.6999529, 0, 1)
+texture = ExtResource("1_mcfxl")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fjitu")
+
+[node name="mouse_tracker" type="Node2D" parent="."]
+script = ExtResource("1_t6l5p")
+metadata/_custom_type_script = "uid://cttehn3y6hru8"

@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://crsi3glq0xtda"]
+
+[ext_resource type="PackedScene" uid="uid://bgl2byam5vqoa" path="res://game/scenes/levels/minigame_level.tscn" id="1_4hhsp"]
+[ext_resource type="Texture2D" uid="uid://crmlji1t5jbf4" path="res://game/assets/art/background/amusement_park.jpg" id="2_ffslj"]
+[ext_resource type="PackedScene" uid="uid://b11sr0wx27qpv" path="res://game/scenes/levels/spin_the_wheel/ferris_wheel.tscn" id="2_pulh1"]
+[ext_resource type="Script" uid="uid://cyr0khi4u70ew" path="res://game/scripts/levels/spin_the_wheel/spin_the_wheel.gd" id="2_sno0v"]
+[ext_resource type="PackedScene" uid="uid://bm4so85ba6gj8" path="res://game/scenes/levels/spin_the_wheel/bystander.tscn" id="5_qojb8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffslj"]
+size = Vector2(761.5, 291)
+
+[node name="spin_the_wheel" instance=ExtResource("1_4hhsp")]
+script = ExtResource("2_sno0v")
+instruction = "Spin!"
+
+[node name="background" type="TextureRect" parent="." index="0"]
+layout_mode = 0
+offset_left = -46.0
+offset_right = 566.0
+offset_bottom = 289.0
+scale = Vector2(1.2399974, 1.2399974)
+texture = ExtResource("2_ffslj")
+
+[node name="ferris_wheel" parent="." index="1" instance=ExtResource("2_pulh1")]
+position = Vector2(288, 159)
+
+[node name="ground" type="StaticBody2D" parent="." index="2"]
+
+[node name="collision" type="CollisionShape2D" parent="ground" index="0"]
+position = Vector2(333.75, 476.5)
+shape = SubResource("RectangleShape2D_ffslj")
+
+[node name="bystander" parent="." index="6" instance=ExtResource("5_qojb8")]
+position = Vector2(467, 319)
+
+[node name="bystander2" parent="." index="7" instance=ExtResource("5_qojb8")]
+position = Vector2(514, 319)
+
+[node name="bystander3" parent="." index="8" instance=ExtResource("5_qojb8")]
+position = Vector2(560, 319)
+
+[node name="bystander4" parent="." index="9" instance=ExtResource("5_qojb8")]
+position = Vector2(605, 319)
+
+[connection signal="unhinge" from="ferris_wheel" to="." method="_on_ferris_wheel_unhinge"]

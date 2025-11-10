@@ -10,7 +10,7 @@ signal scene_changed(new_scene_name: String)
 ## The currently-loaded level
 var current_level: Node:
 	get:
-		return screen.get_child(0);
+		return screen.get_child(0)
 
 ## Generic scene change function
 func change_scene(scene: PackedScene) -> Node:

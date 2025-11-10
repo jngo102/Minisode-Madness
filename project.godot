@@ -30,8 +30,8 @@ Globals="*res://game/scripts/autoload/globals.gd"
 SceneManager="*res://game/scenes/autoload/scene_manager.tscn"
 UIManager="*res://game/scenes/ui/ui_manager.tscn"
 AudioManager="*res://game/scenes/audio/audio_manager.tscn"
-flowerwall_crt="*res://addons/flowerwall_postprocess/scenes/flowerwall_pp.tscn"
 MinigameManager="*res://game/scenes/autoload/minigame_manager.tscn"
+flowerwall_crt="*res://addons/flowerwall_postprocess/scenes/flowerwall_pp.tscn"
 
 [display]
 
@@ -46,6 +46,11 @@ project/assembly_name="Star Gazer"
 
 [editor]
 
+movie_writer/video_quality=1.0
+movie_writer/ogv/audio_quality=1.0
+movie_writer/ogv/encoding_speed=1
+movie_writer/movie_file="C:/Users/jngo1/Videos/Captures/wip.avi"
+movie_writer/disable_vsync=true
 naming/node_name_casing=2
 
 [editor_plugins]
