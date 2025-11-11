@@ -1,20 +1,31 @@
 [gd_scene load_steps=3 format=3 uid="uid://2fxs64v10amh"]
 
 [ext_resource type="PackedScene" uid="uid://bgl2byam5vqoa" path="res://game/scenes/levels/minigame_level.tscn" id="1_676et"]
-[ext_resource type="Script" uid="uid://bskl167ax3e3w" path="res://game/scripts/levels/button_masher/button_masher.gd" id="2_sf02h"]
+[ext_resource type="Script" uid="uid://bskl167ax3e3w" path="res://game/scripts/levels/hacker.gd" id="2_sf02h"]
 
 [node name="button_masher" instance=ExtResource("1_676et")]
 script = ExtResource("2_sf02h")
+code = "/*\\n  Simple DirectMedia Layer\\n  Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>\\n\\n  This software is provided 'as-is', without any express or implied\\n  warranty.  In no event will the authors be held liable for any damages\\n  arising from the use of this software.\\n\\n  Permission is granted to anyone to use this software for any purpose,\\n  including commercial applications, and to alter it and redistribute it\\n  freely, subject to the following restrictions:\\n\\n  1. The origin of this software must not be misrepresented; you must not\\n     claim that you wrote the original software. If you use this software\\n     in a product, an acknowledgment in the product documentation would be\\n     appreciated but is not required.\\n  2. Altered source versions must be plainly marked as such, and must not be\\n     misrepresented as being the original software.\\n  3. This notice may not be removed or altered from any source distribution.\\n*/\\n#include \"SDL_internal.h\"\\n\\n#include \"SDL_ime.h\"\\n#include \"SDL_ibus.h\"\\n#include \"SDL_fcitx.h\"\\n\\ntypedef bool (*SDL_IME_Init_t)(void);\\ntypedef void (*SDL_IME_Quit_t)(void);\\ntypedef void (*SDL_IME_SetFocus_t)(bool);\\ntypedef void (*SDL_IME_Reset_t)(void);\\ntypedef bool (*SDL_IME_ProcessKeyEvent_t)(Uint32, Uint32, bool down);\\ntypedef void (*SDL_IME_UpdateTextInputArea_t)(SDL_Window *window);\\ntypedef void (*SDL_IME_PumpEvents_t)(void);\\n\\nstatic SDL_IME_Init_t SDL_IME_Init_Real = NULL;\\nstatic SDL_IME_Quit_t SDL_IME_Quit_Real = NULL;\\nstatic SDL_IME_SetFocus_t SDL_IME_SetFocus_Real = NULL;\\nstatic SDL_IME_Reset_t SDL_IME_Reset_Real = NULL;\\nstatic SDL_IME_ProcessKeyEvent_t SDL_IME_ProcessKeyEvent_Real = NULL;\\nstatic SDL_IME_UpdateTextInputArea_t SDL_IME_UpdateTextInputArea_Real = NULL;\\nstatic SDL_IME_PumpEvents_t SDL_IME_PumpEvents_Real = NULL;\\n\\nstatic void InitIME(void)\\n{\\n    static bool inited = false;\\n#ifdef HAVE_FCITX\\n    const char *im_module = SDL_getenv(\"SDL_IM_MODULE\");\\n    const char *xmodifiers = SDL_getenv(\"XMODIFIERS\");\\n#endif\\n\\n    if (inited == true) {\\n        return;\\n    }\\n\\n    inited = true;\\n\\n    // See if fcitx IME support is being requested\\n#ifdef HAVE_FCITX\\n    if (!SDL_IME_Init_Real &&\\n        ((im_module && SDL_strcmp(im_module, \"fcitx\") == 0) ||\\n         (!im_module && xmodifiers && SDL_strstr(xmodifiers, \"@im=fcitx\") != NULL))) {\\n        SDL_IME_Init_Real = SDL_Fcitx_Init;\\n        SDL_IME_Quit_Real = SDL_Fcitx_Quit;\\n        SDL_IME_SetFocus_Real = SDL_Fcitx_SetFocus;\\n        SDL_IME_Reset_Real = SDL_Fcitx_Reset;\\n        SDL_IME_ProcessKeyEvent_Real = SDL_Fcitx_ProcessKeyEvent;\\n        SDL_IME_UpdateTextInputArea_Real = SDL_Fcitx_UpdateTextInputArea;\\n        SDL_IME_PumpEvents_Real = SDL_Fcitx_PumpEvents;\\n    }\\n#endif // HAVE_FCITX\\n\\n    // default to IBus\\n#ifdef HAVE_IBUS_IBUS_H\\n    if (!SDL_IME_Init_Real) {\\n        SDL_IME_Init_Real = SDL_IBus_Init;\\n        SDL_IME_Quit_Real = SDL_IBus_Quit;\\n        SDL_IME_SetFocus_Real = SDL_IBus_SetFocus;\\n        SDL_IME_Reset_Real = SDL_IBus_Reset;\\n        SDL_IME_ProcessKeyEvent_Real = SDL_IBus_ProcessKeyEvent;\\n        SDL_IME_UpdateTextInputArea_Real = SDL_IBus_UpdateTextInputArea;\\n        SDL_IME_PumpEvents_Real = SDL_IBus_PumpEvents;\\n    }\\n#endif // HAVE_IBUS_IBUS_H\\n}\\n\\nbool SDL_IME_Init(void)\\n{\\n    InitIME();\\n\\n    if (SDL_IME_Init_Real) {\\n        if (SDL_IME_Init_Real()) {\\n            return true;\\n        }\\n\\n        // uhoh, the IME implementation's init failed! Disable IME support.\\n        SDL_IME_Init_Real = NULL;\\n        SDL_IME_Quit_Real = NULL;\\n        SDL_IME_SetFocus_Real = NULL;\\n        SDL_IME_Reset_Real = NULL;\\n        SDL_IME_ProcessKeyEvent_Real = NULL;\\n        SDL_IME_UpdateTextInputArea_Real = NULL;\\n        SDL_IME_PumpEvents_Real = NULL;\\n    }\\n\\n    return false;\\n}\\n\\nvoid SDL_IME_Quit(void)\\n{\\n    if (SDL_IME_Quit_Real) {\\n        SDL_IME_Quit_Real();\\n    }\\n}\\n\\nvoid SDL_IME_SetFocus(bool focused)\\n{\\n    if (SDL_IME_SetFocus_Real) {\\n        SDL_IME_SetFocus_Real(focused);\\n    }\\n}\\n\\nvoid SDL_IME_Reset(void)\\n{\\n    if (SDL_IME_Reset_Real) {\\n        SDL_IME_Reset_Real();\\n    }\\n}\\n\\nbool SDL_IME_ProcessKeyEvent(Uint32 keysym, Uint32 keycode, bool down)\\n{\\n    if (SDL_IME_ProcessKeyEvent_Real) {\\n        return SDL_IME_ProcessKeyEvent_Real(keysym, keycode, down);\\n    }\\n\\n    return false;\\n}\\n\\nvoid SDL_IME_UpdateTextInputArea(SDL_Window *window)\\n{\\n    if (SDL_IME_UpdateTextInputArea_Real) {\\n        SDL_IME_UpdateTextInputArea_Real(window);\\n    }\\n}\\n\\nvoid SDL_IME_PumpEvents(void)\\n{\\n    if (SDL_IME_PumpEvents_Real) {\\n        SDL_IME_PumpEvents_Real();\\n    }\\n}\\n"
 instruction = "Mash!"
 
-[node name="typed_letters" type="Label" parent="." index="4"]
+[node name="background" type="ColorRect" parent="." index="4"]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -26.0
 grow_horizontal = 2
-grow_vertical = 0
-horizontal_alignment = 1
-vertical_alignment = 1
+grow_vertical = 2
+color = Color(0.019554144, 0.019554138, 0.019554136, 1)
+
+[node name="margin_container" type="MarginContainer" parent="." index="5"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+
+[node name="code_lines" type="VBoxContainer" parent="margin_container" index="0"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+
+[node name="label" type="Label" parent="margin_container/code_lines" index="0"]
+layout_mode = 2
+text = "test"

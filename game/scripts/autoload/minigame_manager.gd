@@ -17,6 +17,8 @@ var level: int = 1:
 
 var current_level: MinigameLevel
 
+var previous_levels: Array[String]
+
 var level_duration: float:
 	get:
 		return level_timer.wait_time
@@ -29,12 +31,15 @@ func load_random_level() -> void:
 	var level_index: int = randi() % len(levels)
 	var level_name: String = levels.keys()[level_index]
 	var next_level: PackedScene = levels.values()[level_index]
-	while is_instance_valid(current_level) and current_level.name == level_name:
+	while previous_levels.has(level_name):
 		level_index = randi() % len(levels)
 		level_name = levels.keys()[level_index]
 		next_level = levels.values()[level_index]
 	current_level = await SceneManager.change_scene(next_level)
 	current_level.game_ended.connect(_on_game_end)
+	previous_levels.append(level_name)
+	if len(previous_levels) >= len(levels) / 2:
+		previous_levels.remove_at(0)
 	play_game_music()
 	if level < 3:
 		level += 1
@@ -45,7 +50,7 @@ func play_game_music() -> void:
 		start_time = fmod(Time.get_ticks_msec() / 1000, bg_track.music_clip.get_length())
 	AudioManager.play_music(bg_track, start_time)
 
-func start(time: float = 8) -> void:
+func start(time: float = 15) -> void:
 	level_timer.start(time)
 
 func _on_game_end() -> void:

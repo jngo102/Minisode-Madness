@@ -32,6 +32,7 @@ UIManager="*res://game/scenes/ui/ui_manager.tscn"
 AudioManager="*res://game/scenes/audio/audio_manager.tscn"
 MinigameManager="*res://game/scenes/autoload/minigame_manager.tscn"
 flowerwall_crt="*res://addons/flowerwall_postprocess/scenes/flowerwall_pp.tscn"
+SaveManager="*res://game/scripts/autoload/save/save_manager.gd"
 
 [display]
 

@@ -15,14 +15,15 @@ var dead: bool
 
 func draw() -> void:
 	AudioManager.play_clip(whip_crack_clip)
+	anim.play("draw")
 	await get_tree().create_timer(draw_time, false).timeout
 	shoot()
 
 func shoot() -> void:
 	if dead:
 		return
+	anim.play("shoot")
 	AudioManager.play_clip(shot_clip)
-	anim.play("draw")
 	shot_player.emit()
 
 func die() -> void:

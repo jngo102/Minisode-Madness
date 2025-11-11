@@ -1,13 +1,55 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7efyr5igynpq"]
+[gd_scene load_steps=17 format=3 uid="uid://b7efyr5igynpq"]
 
 [ext_resource type="Script" uid="uid://b6x7l1sjv8r1u" path="res://game/scripts/autoload/audio_manager/music_track.gd" id="2_gvatp"]
 [ext_resource type="Script" uid="uid://bjmmkuwuns206" path="res://game/scripts/ui/transition_screen.gd" id="2_oxbg6"]
 [ext_resource type="PackedScene" uid="uid://bwsi3gq7cj1qq" path="res://game/scenes/ui/volume/volume_bar.tscn" id="3_ijvw4"]
+[ext_resource type="Texture2D" uid="uid://c4odgh5s5bg6l" path="res://game/assets/art/ui/portraits/portrait1.png" id="3_wsf6i"]
 [ext_resource type="Resource" uid="uid://br8006da5d2vx" path="res://game/resources/music_tracks/main1.tres" id="3_xfiq6"]
+[ext_resource type="Texture2D" uid="uid://cgla2vecr18h4" path="res://game/assets/art/ui/portraits/portrait2.png" id="4_8m1v8"]
 [ext_resource type="Resource" uid="uid://bxyqjwmw7ttcn" path="res://game/resources/music_tracks/main2.tres" id="4_a4ssl"]
 [ext_resource type="Resource" uid="uid://citr7xpqnyjcr" path="res://game/resources/music_tracks/main3.tres" id="5_073ry"]
+[ext_resource type="Texture2D" uid="uid://qhc34lfcjt1p" path="res://game/assets/art/ui/portraits/portrait3.png" id="5_o7nsu"]
 [ext_resource type="Resource" uid="uid://c4wwou03y1rqy" path="res://game/resources/music_tracks/main4.tres" id="6_3itgs"]
+[ext_resource type="Texture2D" uid="uid://8llgomy3wwl1" path="res://game/assets/art/ui/portraits/portrait4.png" id="6_qeif5"]
 [ext_resource type="VideoStream" uid="uid://jnsqg2s656l5" path="res://game/assets/videos/static_long.ogv" id="7_gvatp"]
+[ext_resource type="Texture2D" uid="uid://dkdog6ps0qb76" path="res://game/assets/art/ui/portraits/portrait0.png" id="9_xfiq6"]
+
+[sub_resource type="Animation" id="Animation_xfiq6"]
+resource_name = "tilt"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("portrait:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.7853981633974483, -0.7853981633974483]
+}
+
+[sub_resource type="Animation" id="Animation_a4ssl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("portrait:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_073ry"]
+_data = {
+&"RESET": SubResource("Animation_a4ssl"),
+&"tilt": SubResource("Animation_xfiq6")
+}
 
 [node name="transition_screen" type="Control"]
 layout_mode = 3
@@ -25,6 +67,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("2_oxbg6")
+portraits = Array[Texture2D]([ExtResource("9_xfiq6"), ExtResource("3_wsf6i"), ExtResource("4_8m1v8"), ExtResource("5_o7nsu"), ExtResource("6_qeif5")])
 music_list = Array[ExtResource("2_gvatp")]([ExtResource("3_xfiq6"), ExtResource("4_a4ssl"), ExtResource("5_073ry"), ExtResource("6_3itgs")])
 
 [node name="video_player" type="VideoStreamPlayer" parent="."]
@@ -43,5 +86,20 @@ offset_top = 32.0
 offset_right = 104.0
 offset_bottom = 58.0
 grow_vertical = 1
+
+[node name="portrait" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 402.00006
+offset_top = 255.00003
+offset_right = 530.00006
+offset_bottom = 369.00003
+scale = Vector2(2, 2)
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("9_xfiq6")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_073ry")
+}
 
 [connection signal="finished" from="video_player" to="." method="_on_video_player_finished"]

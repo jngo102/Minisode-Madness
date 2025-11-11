@@ -15,4 +15,4 @@
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_ki6ov")
-countdown_textures = Array[Texture2D]([null, ExtResource("2_nx7lg"), ExtResource("3_11muf"), ExtResource("4_yjcpl"), ExtResource("5_3jrkv"), ExtResource("6_esv08"), ExtResource("7_pgs8q"), ExtResource("8_2n1f5"), ExtResource("9_lf0pe"), ExtResource("10_h1h45")])
+countdown_textures = Array[Texture2D]([ExtResource("2_nx7lg"), ExtResource("3_11muf"), ExtResource("4_yjcpl"), ExtResource("5_3jrkv"), ExtResource("6_esv08"), ExtResource("7_pgs8q"), ExtResource("8_2n1f5"), ExtResource("9_lf0pe"), ExtResource("10_h1h45")])

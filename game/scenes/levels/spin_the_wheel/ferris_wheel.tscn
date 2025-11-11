@@ -25,7 +25,7 @@ node_a = NodePath("../base")
 node_b = NodePath("../body")
 
 [node name="body" type="RigidBody2D" parent="."]
-mass = 5.0
+mass = 15.0
 
 [node name="grab_area" type="Area2D" parent="body"]
 

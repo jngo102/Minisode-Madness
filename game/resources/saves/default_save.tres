@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SaveData" load_steps=2 format=3 uid="uid://br5yxnfb7rna2"]
+
+[ext_resource type="Script" uid="uid://bwuplfce267q5" path="res://game/scripts/autoload/save/save_data.gd" id="1_f7tcb"]
+
+[resource]
+script = ExtResource("1_f7tcb")
+high_scores = Dictionary[String, int]({
+"Gnorts": 1000,
+"Grey Leno": 1000000,
+"Scoot": 500,
+"Sponge": 1
+})
+metadata/_custom_type_script = "uid://bwuplfce267q5"

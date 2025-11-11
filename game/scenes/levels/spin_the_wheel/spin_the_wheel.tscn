@@ -26,6 +26,7 @@ texture = ExtResource("2_ffslj")
 
 [node name="ferris_wheel" parent="." index="2" instance=ExtResource("2_pulh1")]
 position = Vector2(259, 253)
+unhinge_angular_velocity = 20.0
 
 [node name="ground" type="StaticBody2D" parent="." index="3"]
 position = Vector2(0, 52)
