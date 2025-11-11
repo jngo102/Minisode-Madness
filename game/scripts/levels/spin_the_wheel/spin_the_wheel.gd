@@ -9,6 +9,10 @@ func _ready() -> void:
 	await super._ready()
 	await _start_game()
 
+func _process(delta: float) -> void:
+	var amount: float = 2 * (ferris_wheel.body.angular_velocity / ferris_wheel.unhinge_angular_velocity)
+	cam_shaker.shake(amount, delta, true)
+
 func _start_game(time: float = 10, initial_wait: float = 2) -> void:
 	await super._start_game(time, initial_wait)
 	var cursor: Node2D = cursor_scene.instantiate()

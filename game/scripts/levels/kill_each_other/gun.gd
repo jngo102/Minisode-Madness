@@ -1,9 +1,12 @@
 class_name Gun extends Node2D
 
+signal fired
+
 var shot_clip: AudioStream = preload("uid://bincgosrpahaa")
 var shot_scene: PackedScene = preload("uid://b8vq7o15kshs6")
 
 func fire() -> void:
+	fired.emit()
 	AudioManager.play_clip(shot_clip)
 	var shot: Node2D = shot_scene.instantiate()
 	add_child(shot)

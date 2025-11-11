@@ -24,9 +24,13 @@ func _ready() -> void:
 	_start_game(cowboy.draw_time * MinigameManager.level, 0)
 	player_gun = gun_scene.instantiate()
 	player_gun.global_position = Globals.random_position_on_screen()
+	player_gun.fired.connect(_on_player_gun_fire)
 	gun_container.add_child(player_gun)
 	cowboy.draw()
 	cowboy.died.connect(win)
+
+func _on_player_gun_fire() -> void:
+	cam_shaker.shake(1, 0.1, true)
 
 func _exit_tree() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

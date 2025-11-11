@@ -93,8 +93,8 @@ control_scheme = 1
 
 [node name="sky" type="Sprite2D" parent="." index="1"]
 self_modulate = Color(0.40532306, 0.7895826, 0.99999994, 1)
-position = Vector2(320, 225)
-scale = Vector2(1.1853837, 1.1853837)
+position = Vector2(327, 240.00002)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("3_efwyj")
 
 [node name="background" type="Sprite2D" parent="." index="2"]
@@ -125,9 +125,9 @@ shape = SubResource("RectangleShape2D_86qfd")
 position = Vector2(347, 260)
 texture = ExtResource("11_5enco")
 
-[node name="label" parent="." index="6"]
-offset_left = 0.0
-offset_right = 120.0
+[node name="level_timer" parent="ui" index="0"]
+offset_left = -14.0
+offset_right = 486.0
 
 [node name="gun_container" type="Node2D" parent="." index="7"]
 

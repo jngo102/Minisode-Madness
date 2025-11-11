@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://vstl3bg568s7"]
+[gd_scene load_steps=7 format=3 uid="uid://vstl3bg568s7"]
 
 [ext_resource type="PackedScene" uid="uid://xmhpn38awq6d" path="res://game/scenes/ui/menu_button.tscn" id="1_7ds0w"]
 [ext_resource type="Script" uid="uid://csrwcerd3crd3" path="res://game/scripts/levels/main_menu/main_menu.gd" id="1_wmvsf"]
 [ext_resource type="Script" uid="uid://bm02d64u6uy4y" path="res://game/scripts/ui/wrapping_vertical_list.gd" id="2_dtwp4"]
 [ext_resource type="PackedScene" uid="uid://8agf2mc41tgx" path="res://game/scenes/ui/quit_warning.tscn" id="3_eripy"]
+[ext_resource type="Texture2D" uid="uid://caqu26428g26i" path="res://game/assets/art/ui/start_button.png" id="4_dtwp4"]
+[ext_resource type="Texture2D" uid="uid://bevs3721s6w5m" path="res://game/assets/art/ui/options_button.png" id="5_jwn4h"]
 
 [node name="main_menu" type="Control"]
 use_parent_material = true
@@ -54,17 +56,24 @@ script = ExtResource("2_dtwp4")
 [node name="start_button" parent="margin_container/menu_buttons" instance=ExtResource("1_7ds0w")]
 use_parent_material = true
 layout_mode = 2
-text = "Start"
+size_flags_horizontal = 6
+texture_normal = ExtResource("4_dtwp4")
+
+[node name="options_button" parent="margin_container/menu_buttons" instance=ExtResource("1_7ds0w")]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("5_jwn4h")
 
 [node name="credits_button" parent="margin_container/menu_buttons" instance=ExtResource("1_7ds0w")]
 use_parent_material = true
 layout_mode = 2
-text = "Credits"
+size_flags_horizontal = 6
 
 [node name="quit_button" parent="margin_container/menu_buttons" instance=ExtResource("1_7ds0w")]
 use_parent_material = true
 layout_mode = 2
-text = "Exit Game"
+size_flags_horizontal = 6
 
 [node name="quit_warning" parent="." instance=ExtResource("3_eripy")]
 visible = false
@@ -72,6 +81,8 @@ layout_mode = 1
 
 [connection signal="pressed" from="margin_container/menu_buttons/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="visibility_changed" from="margin_container/menu_buttons/start_button" to="." method="_on_start_button_visibility_changed"]
+[connection signal="pressed" from="margin_container/menu_buttons/options_button" to="." method="_on_options_button_pressed"]
+[connection signal="visibility_changed" from="margin_container/menu_buttons/options_button" to="." method="_on_start_button_visibility_changed"]
 [connection signal="pressed" from="margin_container/menu_buttons/credits_button" to="." method="_on_credits_button_pressed"]
 [connection signal="visibility_changed" from="margin_container/menu_buttons/credits_button" to="." method="_on_start_button_visibility_changed"]
 [connection signal="pressed" from="margin_container/menu_buttons/quit_button" to="." method="_on_quit_button_pressed"]

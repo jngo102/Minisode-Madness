@@ -1,5 +1,5 @@
 ## A UI menu button that plays a click sound when pressed
-class_name UIButton extends Button
+class_name UIButton extends TextureButton
 
 ## The audio when clicking the button
 @export var click_sound: AudioStream

@@ -6,7 +6,7 @@ class_name MainMenu extends Control
 ## List of all main menu buttons
 @onready var _menu_buttons: WrappingVerticalList = _margin_container.get_node_or_null("menu_buttons")
 ## The button to quit the game
-@onready var _quit_button: Button = _menu_buttons.get_node_or_null("quit_button")
+@onready var _quit_button: UIButton = _menu_buttons.get_node_or_null("quit_button")
 ## Warning for whether the player really wants to exit the game
 @onready var _quit_warning: VBoxContainer = $quit_warning
 
@@ -23,6 +23,9 @@ func _on_start_button_pressed() -> void:
 	#create_tween().tween_property(flowerwall_crt, "modulate", Color.TRANSPARENT, 1).from_current().set_trans(Tween.TRANS_LINEAR)
 	MinigameManager.load_random_level()
 	#SceneManager.change_scene(load("uid://b3neoogxgx3lr"))
+
+func _on_options_button_pressed() -> void:
+	pass # Replace with function body.
 
 func _on_credits_button_pressed() -> void:
 	pass # Replace with function body.

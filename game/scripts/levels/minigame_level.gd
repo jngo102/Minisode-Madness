@@ -8,9 +8,9 @@ enum ControlScheme {
 @export var instruction: String = ""
 @export var control_scheme: ControlScheme
 
-@onready var label: Label = $label
-@onready var control: TextureRect = $control_indicator
-@onready var level_timer: LevelTimer = $level_timer
+@onready var label: Label = $ui/label
+@onready var control: TextureRect = $ui/control_indicator
+@onready var level_timer: LevelTimer = $ui/level_timer
 
 var keys_texture: Texture2D = preload("uid://5gaofps6x30n")
 var mouse_texture: Texture2D = preload("uid://cnjg3mdf30pgg")
@@ -21,6 +21,10 @@ signal game_ended
 var started: bool
 var finished: bool
 var won_game: bool
+
+var cam_shaker: Shaker:
+	get:
+		return $game_camera/shaker
 
 func _ready() -> void:
 	label.text = instruction

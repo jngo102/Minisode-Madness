@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5f1ljpqkyw4r"]
+
+[ext_resource type="Script" uid="uid://dk1l8pmxkbdfu" path="res://game/scenes/gameplay/game_camera.gd" id="1_5uuet"]
+[ext_resource type="Script" uid="uid://6sv554ad7jeg" path="res://game/scripts/gameplay/shaker.gd" id="1_w13e5"]
+
+[node name="game_camera" type="Camera2D"]
+anchor_mode = 0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("1_5uuet")
+
+[node name="shaker" type="Node2D" parent="."]
+position = Vector2(-2, 0)
+script = ExtResource("1_w13e5")
+metadata/_custom_type_script = "uid://6sv554ad7jeg"

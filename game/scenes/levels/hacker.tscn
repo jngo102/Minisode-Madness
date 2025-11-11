@@ -1,7 +1,69 @@
-[gd_scene load_steps=3 format=3 uid="uid://by0w1dyrd10ib"]
+[gd_scene load_steps=7 format=3 uid="uid://by0w1dyrd10ib"]
 
 [ext_resource type="PackedScene" uid="uid://bgl2byam5vqoa" path="res://game/scenes/levels/minigame_level.tscn" id="1_0w7e3"]
 [ext_resource type="Script" uid="uid://bskl167ax3e3w" path="res://game/scripts/levels/hacker.gd" id="2_fw1lc"]
+[ext_resource type="Texture2D" uid="uid://rch2nlr6yfyo" path="res://game/assets/art/world/hacker.png" id="3_fw1lc"]
+
+[sub_resource type="Animation" id="Animation_fw1lc"]
+resource_name = "spin_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hacker:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hacker:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 37.69911184307752]
+}
+
+[sub_resource type="Animation" id="Animation_lrv1n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hacker:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hacker:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x7fce"]
+_data = {
+&"RESET": SubResource("Animation_lrv1n"),
+&"spin_in": SubResource("Animation_fw1lc")
+}
 
 [node name="hacker" instance=ExtResource("1_0w7e3")]
 script = ExtResource("2_fw1lc")
@@ -9,7 +71,12 @@ code_str = "// dear imgui: Platform Backend for GLUT/FreeGLUT// This needs to be
 code = PackedStringArray("#include \"SDL_internal.h\"", "#include \"SDL_ime.h\"", "#include \"SDL_ibus.h\"", "#include \"SDL_fcitx.h\"", "typedef bool (*SDL_IME_Init_t)(void);", "typedef void (*SDL_IME_Quit_t)(void);", "typedef void (*SDL_IME_SetFocus_t)(bool);", "typedef void (*SDL_IME_Reset_t)(void);", "typedef bool (*SDL_IME_ProcessKeyEvent_t)(Uint32, Uint32, bool down);", "typedef void (*SDL_IME_UpdateTextInputArea_t)(SDL_Window *window);", "typedef void (*SDL_IME_PumpEvents_t)(void);", "static SDL_IME_Init_t SDL_IME_Init_Real = NULL;", "static SDL_IME_Quit_t SDL_IME_Quit_Real = NULL;", "static SDL_IME_SetFocus_t SDL_IME_SetFocus_Real = NULL;", "static SDL_IME_Reset_t SDL_IME_Reset_Real = NULL;", "static SDL_IME_ProcessKeyEvent_t SDL_IME_ProcessKeyEvent_Real = NULL;", "static SDL_IME_UpdateTextInputArea_t SDL_IME_UpdateTextInputArea_Real = NULL;", "static SDL_IME_PumpEvents_t SDL_IME_PumpEvents_Real = NULL;", "static void InitIME(void)", "{", "    static bool inited = false;", "#ifdef HAVE_FCITX", "    const char *im_module = SDL_getenv(\"SDL_IM_MODULE\");", "    const char *xmodifiers = SDL_getenv(\"XMODIFIERS\");", "#endif", "    if (inited == true) {", "        return;", "    }", "    inited = true;", "#ifdef HAVE_FCITX", "    if (!SDL_IME_Init_Real &&", "        ((im_module && SDL_strcmp(im_module, \"fcitx\") == 0) ||", "         (!im_module && xmodifiers && SDL_strstr(xmodifiers, \"@im=fcitx\") != NULL))) {", "        SDL_IME_Init_Real = SDL_Fcitx_Init;", "        SDL_IME_Quit_Real = SDL_Fcitx_Quit;", "        SDL_IME_SetFocus_Real = SDL_Fcitx_SetFocus;", "        SDL_IME_Reset_Real = SDL_Fcitx_Reset;", "        SDL_IME_ProcessKeyEvent_Real = SDL_Fcitx_ProcessKeyEvent;", "        SDL_IME_UpdateTextInputArea_Real = SDL_Fcitx_UpdateTextInputArea;", "        SDL_IME_PumpEvents_Real = SDL_Fcitx_PumpEvents;", "    }", "#endif // HAVE_FCITX", "#ifdef HAVE_IBUS_IBUS_H", "    if (!SDL_IME_Init_Real) {", "        SDL_IME_Init_Real = SDL_IBus_Init;", "        SDL_IME_Quit_Real = SDL_IBus_Quit;", "        SDL_IME_SetFocus_Real = SDL_IBus_SetFocus;", "        SDL_IME_Reset_Real = SDL_IBus_Reset;", "        SDL_IME_ProcessKeyEvent_Real = SDL_IBus_ProcessKeyEvent;", "        SDL_IME_UpdateTextInputArea_Real = SDL_IBus_UpdateTextInputArea;", "        SDL_IME_PumpEvents_Real = SDL_IBus_PumpEvents;", "    }", "#endif // HAVE_IBUS_IBUS_H", "}", "bool SDL_IME_Init(void)", "{", "    InitIME();", "    if (SDL_IME_Init_Real) {", "        if (SDL_IME_Init_Real()) {", "            return true;", "        }", "        SDL_IME_Init_Real = NULL;", "        SDL_IME_Quit_Real = NULL;", "        SDL_IME_SetFocus_Real = NULL;", "        SDL_IME_Reset_Real = NULL;", "        SDL_IME_ProcessKeyEvent_Real = NULL;", "        SDL_IME_UpdateTextInputArea_Real = NULL;", "        SDL_IME_PumpEvents_Real = NULL;", "    }", "    return false;", "}", "void SDL_IME_Quit(void)", "{", "    if (SDL_IME_Quit_Real) {", "        SDL_IME_Quit_Real();", "    }", "}", "void SDL_IME_SetFocus(bool focused)", "{", "    if (SDL_IME_SetFocus_Real) {", "        SDL_IME_SetFocus_Real(focused);", "    }", "}", "void SDL_IME_Reset(void)", "{", "    if (SDL_IME_Reset_Real) {", "        SDL_IME_Reset_Real();", "    }", "}", "bool SDL_IME_ProcessKeyEvent(Uint32 keysym, Uint32 keycode, bool down)", "{", "    if (SDL_IME_ProcessKeyEvent_Real) {", "        return SDL_IME_ProcessKeyEvent_Real(keysym, keycode, down);", "    }", "    return false;", "}", "void SDL_IME_UpdateTextInputArea(SDL_Window *window)", "{", "    if (SDL_IME_UpdateTextInputArea_Real) {", "        SDL_IME_UpdateTextInputArea_Real(window);", "    }", "}", "void SDL_IME_PumpEvents(void)", "{", "    if (SDL_IME_PumpEvents_Real) {", "        SDL_IME_PumpEvents_Real();", "    }", "}")
 instruction = "Mash!"
 
-[node name="background" type="ColorRect" parent="." index="1"]
+[node name="anim" type="AnimationPlayer" parent="." index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_x7fce")
+}
+
+[node name="background" type="ColorRect" parent="." index="2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +85,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.019554144, 0.019554138, 0.019554136, 1)
 
-[node name="margin_container" type="MarginContainer" parent="." index="5"]
+[node name="margin_container" type="MarginContainer" parent="." index="6"]
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
@@ -31,3 +98,20 @@ theme_override_constants/separation = 0
 [node name="terminal" type="Label" parent="margin_container/code_lines" index="0"]
 layout_mode = 2
 text = "hacker@hacknet: ~$"
+
+[node name="hacker" type="TextureRect" parent="." index="7"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(150, 150)
+texture = ExtResource("3_fw1lc")

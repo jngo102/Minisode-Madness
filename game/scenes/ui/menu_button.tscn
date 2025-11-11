@@ -3,12 +3,14 @@
 [ext_resource type="Script" uid="uid://dlhm03u30y5vd" path="res://game/scripts/ui/menu_button.gd" id="1_x6e5d"]
 [ext_resource type="AudioStream" uid="uid://c8s5kekxs8aay" path="res://game/assets/sfx/ui/switch28.ogg" id="2_xtirn"]
 
-[node name="menu_button" type="Button"]
-anchors_preset = 10
-anchor_right = 1.0
+[node name="menu_button" type="TextureButton"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
 offset_bottom = 8.0
 grow_horizontal = 2
 size_flags_horizontal = 3
+stretch_mode = 3
 script = ExtResource("1_x6e5d")
 click_sound = ExtResource("2_xtirn")
 
