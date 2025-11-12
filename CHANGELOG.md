@@ -1,5 +1,12 @@
 # Vinisodes Change log
 
+## [0.3.0] - 2025-11-1
+
+### Added
+
+- Custom icon
+- Lives
+
 ## [0.2.0] - 2025-11-11
 
 ### Added

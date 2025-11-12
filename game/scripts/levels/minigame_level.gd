@@ -71,6 +71,7 @@ func lose() -> void:
 	print("LOSE")
 	finished = true
 	won_game = false
+	MinigameManager.lives_left -= 1
 
 func end_game() -> void:
 	level_timer.in_progress = false

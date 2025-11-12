@@ -15,13 +15,14 @@ var menu_music: MusicTrack = preload("uid://c0dxy53i8aplb")
 
 func _ready() -> void:
 	create_tween().tween_property(flowerwall_crt, "modulate", Color.WHITE, 1).from_current().set_trans(Tween.TRANS_LINEAR)
-	AudioManager.play_music(menu_music, 0, 2)
+	AudioManager.play_music(menu_music, 0, 1)
 	if OS.get_name() == "Web":
 		_quit_button.hide()
 	_menu_buttons.grab_focus()
 
 func _on_start_button_pressed() -> void:
 	#create_tween().tween_property(flowerwall_crt, "modulate", Color.TRANSPARENT, 1).from_current().set_trans(Tween.TRANS_LINEAR)
+	MinigameManager.lives_left = 4
 	MinigameManager.load_random_level()
 	#SceneManager.change_scene(load("uid://b3neoogxgx3lr"))
 

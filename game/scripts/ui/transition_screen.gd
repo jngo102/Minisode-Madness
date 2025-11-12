@@ -7,6 +7,7 @@ class_name TransitionScreen extends BaseUI
 @onready var anim: AnimationPlayer = $anim
 @onready var video_player: VideoStreamPlayer = $video_player
 @onready var portrait: TextureRect = $portrait
+@onready var lives: Control = $lives
 
 var last_track: MusicTrack
 var last_portrait: Texture2D
@@ -17,6 +18,13 @@ signal transitioned
 func open() -> void:
 	super.open()
 	anim.play("tilt")
+	for i in range(0, lives.get_child_count()):
+		var life_texture: TextureRect = lives.get_child(i)
+		if i < MinigameManager.lives_left:
+			life_texture.show()
+		else:
+			life_texture.hide()
+		
 	var track: MusicTrack = music_list[randi() % len(music_list)]
 	while track == last_track:
 		track = music_list[randi() % len(music_list)]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b7efyr5igynpq"]
+[gd_scene load_steps=21 format=3 uid="uid://b7efyr5igynpq"]
 
 [ext_resource type="Script" uid="uid://b6x7l1sjv8r1u" path="res://game/scripts/autoload/audio_manager/music_track.gd" id="2_gvatp"]
 [ext_resource type="Script" uid="uid://bjmmkuwuns206" path="res://game/scripts/ui/transition_screen.gd" id="2_oxbg6"]
@@ -13,6 +13,25 @@
 [ext_resource type="Texture2D" uid="uid://8llgomy3wwl1" path="res://game/assets/art/ui/portraits/portrait4.png" id="6_qeif5"]
 [ext_resource type="VideoStream" uid="uid://jnsqg2s656l5" path="res://game/assets/videos/static_long.ogv" id="7_gvatp"]
 [ext_resource type="Texture2D" uid="uid://dkdog6ps0qb76" path="res://game/assets/art/ui/portraits/portrait0.png" id="9_xfiq6"]
+[ext_resource type="Texture2D" uid="uid://cfqcuyqvu7oup" path="res://game/assets/art/ui/hud/lives/life0.png" id="14_j77i6"]
+[ext_resource type="Texture2D" uid="uid://cx35w5f6bopxt" path="res://game/assets/art/ui/hud/lives/life1.png" id="15_3kwkc"]
+[ext_resource type="Texture2D" uid="uid://cv1jlw8cb12op" path="res://game/assets/art/ui/hud/lives/life2.png" id="16_ku1ts"]
+[ext_resource type="Texture2D" uid="uid://3w8tgf2l83qg" path="res://game/assets/art/ui/hud/lives/life3.png" id="17_vkul0"]
+
+[sub_resource type="Animation" id="Animation_a4ssl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("portrait:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_xfiq6"]
 resource_name = "tilt"
@@ -28,21 +47,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0.7853981633974483, -0.7853981633974483]
-}
-
-[sub_resource type="Animation" id="Animation_a4ssl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("portrait:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_073ry"]
@@ -90,9 +94,9 @@ grow_vertical = 1
 [node name="portrait" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 402.00006
-offset_top = 255.00003
+offset_top = 72.0
 offset_right = 530.00006
-offset_bottom = 369.00003
+offset_bottom = 186.0
 scale = Vector2(2, 2)
 pivot_offset = Vector2(64, 64)
 texture = ExtResource("9_xfiq6")
@@ -101,5 +105,52 @@ texture = ExtResource("9_xfiq6")
 libraries = {
 &"": SubResource("AnimationLibrary_073ry")
 }
+
+[node name="lives" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = 43.0
+offset_right = 544.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="life0" type="TextureRect" parent="lives"]
+layout_mode = 0
+offset_right = 194.0
+offset_bottom = 282.0
+texture = ExtResource("14_j77i6")
+stretch_mode = 4
+
+[node name="life1" type="TextureRect" parent="lives"]
+layout_mode = 0
+offset_left = 210.0
+offset_right = 404.0
+offset_bottom = 282.0
+texture = ExtResource("15_3kwkc")
+stretch_mode = 4
+
+[node name="life2" type="TextureRect" parent="lives"]
+layout_mode = 0
+offset_left = 420.0
+offset_right = 614.0
+offset_bottom = 282.0
+texture = ExtResource("16_ku1ts")
+stretch_mode = 4
+
+[node name="life3" type="TextureRect" parent="lives"]
+layout_mode = 0
+offset_left = 630.0
+offset_top = -48.89
+offset_right = 824.0
+offset_bottom = 233.11
+texture = ExtResource("17_vkul0")
+stretch_mode = 4
 
 [connection signal="finished" from="video_player" to="." method="_on_video_player_finished"]

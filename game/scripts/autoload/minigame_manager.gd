@@ -8,6 +8,8 @@ extends Node
 
 signal level_changed(new_level: int)
 
+var lives_left: int
+
 var level: int = 1:
 	set(value):
 		level = value
@@ -48,13 +50,20 @@ func _on_game_end() -> void:
 	await get_tree().create_timer(2, false).timeout
 	if is_instance_valid(current_level):
 		current_level.game_ended.disconnect(_on_game_end)
-	load_random_level()
+	if lives_left > 0:
+		load_random_level()
+	else:
+		game_over()
 
 func end_game() -> void:
 	level_timer.stop()
 	if is_instance_valid(current_level) and not current_level.won_game:
 		current_level.lose()
 	current_level.end_game()
+
+func game_over() -> void:
+	SceneManager.change_scene(load("uid://vstl3bg568s7"))
+	
 
 func _on_level_timer_timeout() -> void:
 	end_game()

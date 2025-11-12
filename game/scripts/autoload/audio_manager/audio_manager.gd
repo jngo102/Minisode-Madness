@@ -49,6 +49,7 @@ func play_clip(clip: AudioStream, pitch_min: float = 1, pitch_max: float = 1) ->
 ## Play a music track, fading out from the current track into the new track
 func play_music(track: MusicTrack, start_time: float = 0, fade_time: float = 0.5, immediate: bool = false) -> void:
 	if volume_tween and volume_tween.is_running():
+		volume_tween.custom_step(INF)
 		volume_tween.kill()
 	# Immediately play music if nothing is currently playing (or if immediate specified)
 	current_track = track
