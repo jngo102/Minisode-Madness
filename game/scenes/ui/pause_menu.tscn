@@ -103,15 +103,25 @@ offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="margin_container" type="MarginContainer" parent="."]
+[node name="panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -160.0
+offset_right = 240.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margin_container" type="MarginContainer" parent="panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -88.0
-offset_top = -90.0
-offset_right = 88.0
-offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 32
@@ -119,24 +129,24 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="menu_buttons" type="VBoxContainer" parent="margin_container"]
+[node name="menu_buttons" type="VBoxContainer" parent="panel/margin_container"]
 layout_mode = 2
 alignment = 1
 
-[node name="resume_button" parent="margin_container/menu_buttons" instance=ExtResource("2_ig7np")]
+[node name="resume_button" parent="panel/margin_container/menu_buttons" instance=ExtResource("2_ig7np")]
 layout_mode = 2
 text = "Resume"
 
-[node name="quit_button" parent="margin_container/menu_buttons" instance=ExtResource("2_ig7np")]
+[node name="quit_button" parent="panel/margin_container/menu_buttons" instance=ExtResource("2_ig7np")]
 layout_mode = 2
 text = "Quit"
 
-[node name="quit_warning" parent="margin_container" instance=ExtResource("4_klkif")]
+[node name="quit_warning" parent="panel/margin_container" instance=ExtResource("4_klkif")]
 visible = false
 layout_mode = 2
 
 [connection signal="animation_finished" from="animator" to="." method="_on_animator_animation_finished"]
-[connection signal="pressed" from="margin_container/menu_buttons/resume_button" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="margin_container/menu_buttons/quit_button" to="." method="_on_quit_button_pressed"]
-[connection signal="quit_canceled" from="margin_container/quit_warning" to="." method="_on_quit_warning_quit_canceled"]
-[connection signal="quit_confirmed" from="margin_container/quit_warning" to="." method="_on_quit_warning_quit_confirmed"]
+[connection signal="pressed" from="panel/margin_container/menu_buttons/resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="panel/margin_container/menu_buttons/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="quit_canceled" from="panel/margin_container/quit_warning" to="." method="_on_quit_warning_quit_canceled"]
+[connection signal="quit_confirmed" from="panel/margin_container/quit_warning" to="." method="_on_quit_warning_quit_confirmed"]

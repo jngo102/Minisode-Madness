@@ -7,6 +7,7 @@ enum ControlScheme {
 
 @export var instruction: String = ""
 @export var control_scheme: ControlScheme
+@export var music: MusicTrack
 
 @onready var label: Label = $ui/label
 @onready var control: TextureRect = $ui/control_indicator
@@ -27,6 +28,8 @@ var cam_shaker: Shaker:
 		return $game_camera/shaker
 
 func _ready() -> void:
+	AudioManager.play_music(music, 0, 0.5)
+	
 	label.text = instruction
 	await get_tree().create_timer(0.5, false).timeout
 	var label_tween: Tween = create_tween()
@@ -49,7 +52,7 @@ func _start_game(time: float = 10, initial_wait: float = 2) -> void:
 	MinigameManager.level_timer.start(time / MinigameManager.level)
 	label.text = "START!"
 	var label_tween: Tween = create_tween()
-	label_tween.tween_property(label, "position", Vector2(Globals.SCREEN_WIDTH / 2 - label.size.x / 2, 64), 0.25).from(Vector2(Globals.SCREEN_WIDTH / 2 - label.size.x, -128)).set_trans(Tween.TRANS_LINEAR)
+	label_tween.tween_property(label, "position", Vector2(Globals.SCREEN_WIDTH / 2 - label.size.x / 2, 64), 0.25).from(Vector2(Globals.SCREEN_WIDTH / 2 - label.size.x, 64)).set_trans(Tween.TRANS_LINEAR)
 	label_tween.parallel().tween_property(label, "scale", Vector2.ONE, 0.25).from(Vector2.ONE * 2).set_trans(Tween.TRANS_LINEAR)
 	label_tween.tween_property(label, "self_modulate", Color.TRANSPARENT, 1).from(Color.WHITE).set_trans(Tween.TRANS_LINEAR)
 	level_timer.in_progress = true

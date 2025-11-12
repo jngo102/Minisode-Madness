@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MusicTrack" load_steps=3 format=3 uid="uid://dqmdvp6d6u8u1"]
+
+[ext_resource type="Script" uid="uid://b6x7l1sjv8r1u" path="res://game/scripts/autoload/audio_manager/music_track.gd" id="1_0hgct"]
+[ext_resource type="AudioStream" uid="uid://biwjpc2kdivhg" path="res://game/assets/music/yappingmusic.wav" id="1_b6eks"]
+
+[resource]
+script = ExtResource("1_0hgct")
+music_clip = ExtResource("1_b6eks")
+metadata/_custom_type_script = "uid://b6x7l1sjv8r1u"

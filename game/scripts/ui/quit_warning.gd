@@ -1,5 +1,5 @@
 ## Warning displayed when attempting to quit the game
-class_name QuitWarning extends VBoxContainer
+class_name QuitWarning extends Panel
 
 ## Emitted when a quit is confirmed
 signal quit_confirmed

@@ -38,7 +38,7 @@ func _ready() -> void:
 ## Play a one shot audio clip
 func play_clip(clip: AudioStream, pitch_min: float = 1, pitch_max: float = 1) -> AudioStreamPlayer2D:
 	var audio_player: AudioStreamPlayer2D = audio_player_prefab.instantiate()
-	audio_player.volume_db = sfx_volume
+	audio_player.volume_db = sfx_volume * SaveManager.settings.master_volume * SaveManager.settings.sfx_volume
 	audio_player.pitch_scale = randf_range(pitch_min, pitch_max)
 	audio_player.finished.connect(func(): audio_player.queue_free())
 	audio_player.stream = clip
@@ -48,18 +48,19 @@ func play_clip(clip: AudioStream, pitch_min: float = 1, pitch_max: float = 1) ->
 
 ## Play a music track, fading out from the current track into the new track
 func play_music(track: MusicTrack, start_time: float = 0, fade_time: float = 0.5, immediate: bool = false) -> void:
+	if volume_tween and volume_tween.is_running():
+		volume_tween.kill()
 	# Immediately play music if nothing is currently playing (or if immediate specified)
 	current_track = track
 	if immediate:
+		current_music_player.stop()
 		current_music_player.set_stream(track.music_clip)
-		current_music_player.play()
+		current_music_player.play(start_time)
 		return
 	# Don't fade in and out of the same music track
 	elif current_music_player.stream and track.music_clip.resource_path == current_music_player.stream.resource_path:
 		return
 	upcoming_music_player.set_stream(track.music_clip)
-	if volume_tween and volume_tween.is_running():
-		volume_tween.kill()
 	volume_tween = create_tween()
 	volume_tween.finished.connect(on_volume_tween_finished)
 	upcoming_music_player.play(start_time)

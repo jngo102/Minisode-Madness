@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://mtf2q6k28wlo"]
+[gd_scene load_steps=7 format=3 uid="uid://mtf2q6k28wlo"]
 
 [ext_resource type="Script" uid="uid://djywe22tryyxf" path="res://game/scripts/autoload/minigame_manager.gd" id="1_iry60"]
 [ext_resource type="PackedScene" uid="uid://by0w1dyrd10ib" path="res://game/scenes/levels/hacker.tscn" id="5_1k7st"]
 [ext_resource type="PackedScene" uid="uid://cw8q4k0bfdklc" path="res://game/scenes/levels/kill_each_other.tscn" id="5_l5xfl"]
 [ext_resource type="PackedScene" uid="uid://b3neoogxgx3lr" path="res://game/scenes/levels/mute_the_game/mute_the_game.tscn" id="6_8uvlj"]
+[ext_resource type="PackedScene" uid="uid://6y621gmfnc1i" path="res://game/scenes/levels/pancake_flipper/pancake_flipper.tscn" id="6_icbmg"]
 [ext_resource type="PackedScene" uid="uid://crsi3glq0xtda" path="res://game/scenes/levels/spin_the_wheel/spin_the_wheel.tscn" id="7_8g60q"]
 
 [node name="minigame_manager" type="Node"]
@@ -12,6 +13,7 @@ levels = Dictionary[String, PackedScene]({
 "hacker": ExtResource("5_1k7st"),
 "kill_each_other": ExtResource("5_l5xfl"),
 "mute_the_game": ExtResource("6_8uvlj"),
+"pancake_flipper": ExtResource("6_icbmg"),
 "spin_the_wheel": ExtResource("7_8g60q")
 })
 

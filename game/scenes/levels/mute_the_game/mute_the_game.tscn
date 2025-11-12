@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3neoogxgx3lr"]
+[gd_scene load_steps=17 format=3 uid="uid://b3neoogxgx3lr"]
 
 [ext_resource type="PackedScene" uid="uid://bgl2byam5vqoa" path="res://game/scenes/levels/minigame_level.tscn" id="1_qn388"]
 [ext_resource type="Script" uid="uid://dm0qp8nhdqvrw" path="res://game/scripts/levels/mute_the_game/mute_the_game.gd" id="2_j2tlk"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dshcr56uqo5fd" path="res://game/assets/art/world/yapper/mutebg4.png" id="6_ienqp"]
 [ext_resource type="Texture2D" uid="uid://bywdtwv6txogj" path="res://game/assets/art/world/yapper/mute2.png" id="6_nrn3w"]
 [ext_resource type="Texture2D" uid="uid://c63be3045626l" path="res://game/assets/art/world/yapper/mute-quiet.png" id="7_505sx"]
+[ext_resource type="Resource" uid="uid://dqmdvp6d6u8u1" path="res://game/resources/music_tracks/yapping.tres" id="7_kxxxs"]
 [ext_resource type="AudioStream" uid="uid://b6rx5ay2x3wfl" path="res://game/assets/sfx/yap.mp3" id="7_x4de5"]
 
 [sub_resource type="Animation" id="Animation_x4de5"]
@@ -71,6 +72,7 @@ script = ExtResource("2_j2tlk")
 textures = Array[Texture2D]([ExtResource("3_vv4sy"), ExtResource("4_kxxxs"), ExtResource("5_3w2sg"), ExtResource("6_ienqp")])
 instruction = "Mute!"
 control_scheme = 1
+music = ExtResource("7_kxxxs")
 
 [node name="background" type="TextureRect" parent="." index="1"]
 layout_mode = 0

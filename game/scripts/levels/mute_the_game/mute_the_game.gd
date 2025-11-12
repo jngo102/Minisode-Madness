@@ -12,7 +12,7 @@ var mute_bg: Texture2D = preload("uid://bt6jr558643on")
 
 func _ready() -> void:
 	await super._ready()
-	await _start_game(6)
+	await _start_game(10)
 	panel.show()
 	yapper_anim.play("yap")
 	voice.play()

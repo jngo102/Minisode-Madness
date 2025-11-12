@@ -6,8 +6,6 @@ extends Node
 
 @onready var level_timer: Timer = $level_timer
 
-var bg_track: MusicTrack = preload("uid://b5k4swjd25g86")
-
 signal level_changed(new_level: int)
 
 var level: int = 1:
@@ -40,27 +38,21 @@ func load_random_level() -> void:
 	previous_levels.append(level_name)
 	if len(previous_levels) >= len(levels) / 2:
 		previous_levels.remove_at(0)
-	play_game_music()
 	if level < 3:
 		level += 1
-
-func play_game_music() -> void:
-	var start_time: float = 0
-	if AudioManager.current_track != null:
-		start_time = fmod(Time.get_ticks_msec() / 1000, bg_track.music_clip.get_length())
-	AudioManager.play_music(bg_track, start_time)
 
 func start(time: float = 15) -> void:
 	level_timer.start(time)
 
 func _on_game_end() -> void:
 	await get_tree().create_timer(2, false).timeout
-	current_level.game_ended.disconnect(_on_game_end)
+	if is_instance_valid(current_level):
+		current_level.game_ended.disconnect(_on_game_end)
 	load_random_level()
 
 func end_game() -> void:
 	level_timer.stop()
-	if not current_level.won_game:
+	if is_instance_valid(current_level) and not current_level.won_game:
 		current_level.lose()
 	current_level.end_game()
 

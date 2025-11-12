@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://cw8q4k0bfdklc"]
+[gd_scene load_steps=19 format=3 uid="uid://cw8q4k0bfdklc"]
 
 [ext_resource type="PackedScene" uid="uid://bgl2byam5vqoa" path="res://game/scenes/levels/minigame_level.tscn" id="1_3tlnc"]
 [ext_resource type="Script" uid="uid://b1ve581e8jr4a" path="res://game/scripts/levels/kill_each_other/kill_each_other.gd" id="1_5enco"]
 [ext_resource type="Texture2D" uid="uid://0c46f5lobt2" path="res://game/assets/art/background/kill_each_other.jpg" id="1_vnhpb"]
+[ext_resource type="Resource" uid="uid://buqnj5tbpksom" path="res://game/resources/music_tracks/cowboy.tres" id="3_3tlnc"]
 [ext_resource type="Texture2D" uid="uid://ctt5aghfou88j" path="res://game/assets/art/background/desertbg.png" id="3_efwyj"]
 [ext_resource type="Script" uid="uid://pw33phlkuxdt" path="res://game/scripts/levels/kill_each_other/cowboy.gd" id="3_i8160"]
 [ext_resource type="Texture2D" uid="uid://3xfq7famaty" path="res://game/assets/art/actors/cowboy/cowboy.png" id="6_86qfd"]
@@ -90,6 +91,7 @@ min_time = 1.0
 max_time = 4.0
 instruction = "KILL EACH OTHER"
 control_scheme = 1
+music = ExtResource("3_3tlnc")
 
 [node name="sky" type="Sprite2D" parent="." index="1"]
 self_modulate = Color(0.40532306, 0.7895826, 0.99999994, 1)

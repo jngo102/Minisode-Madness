@@ -7,7 +7,7 @@ var cursor_scene: PackedScene = preload("uid://bbvasjlghjsv0")
 
 func _ready() -> void:
 	await super._ready()
-	await _start_game()
+	await _start_game(15)
 
 func _process(delta: float) -> void:
 	var amount: float = 2 * (ferris_wheel.body.angular_velocity / ferris_wheel.unhinge_angular_velocity)

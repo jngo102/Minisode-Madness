@@ -8,8 +8,8 @@ extends Control
 @onready var ui_layer: CanvasLayer = $ui_layer
 
 ## UIs that cannot be closed by pressing "ui_cancel"
-var non_closeable_uis: Array[GDScript] = [
-	TransitionScreen,
+var non_closeable_uis: Array[String] = [
+	"transition_screen"
 ]
 
 ## A list of all instantiated UIs
@@ -31,13 +31,11 @@ var top_ui: BaseUI:
 ## Whether a closeable UI is currently being shown
 var in_closeable_ui: bool:
 	get:
-		return len(opened_uis) > 0 and opened_uis.any(func(ui): return non_closeable_uis.has(ui.get_script()))
+		return len(opened_uis) > 0 and opened_uis.any(func(ui): return non_closeable_uis.has(ui.name))
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		if in_closeable_ui:
-			top_ui.close()
-		elif SceneManager.current_level.name != "main_menu":
+		if not get_ui(TransitionScreen).visible and SceneManager.current_level.name != "main_menu":
 			var pause_menu: PauseMenu = get_ui(PauseMenu)
 			if pause_menu:
 				if pause_menu.visible:

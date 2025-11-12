@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://crsi3glq0xtda"]
+[gd_scene load_steps=9 format=3 uid="uid://crsi3glq0xtda"]
 
 [ext_resource type="PackedScene" uid="uid://bgl2byam5vqoa" path="res://game/scenes/levels/minigame_level.tscn" id="1_4hhsp"]
 [ext_resource type="PackedScene" uid="uid://b11sr0wx27qpv" path="res://game/scenes/levels/spin_the_wheel/ferris_wheel.tscn" id="2_pulh1"]
 [ext_resource type="Script" uid="uid://cyr0khi4u70ew" path="res://game/scripts/levels/spin_the_wheel/spin_the_wheel.gd" id="2_sno0v"]
+[ext_resource type="Resource" uid="uid://xl51c3otxuj1" path="res://game/resources/music_tracks/carnival.tres" id="3_fishd"]
 [ext_resource type="Texture2D" uid="uid://ifbrlili5y6h" path="res://game/assets/art/world/ferris_wheel/carnivalbg.png" id="3_sno0v"]
 [ext_resource type="PackedScene" uid="uid://bm4so85ba6gj8" path="res://game/scenes/levels/spin_the_wheel/bystander.tscn" id="5_qojb8"]
 [ext_resource type="Texture2D" uid="uid://de4ewy5psdmrw" path="res://game/assets/art/world/ferris_wheel/rotate_direction.png" id="6_sno0v"]
@@ -14,6 +15,7 @@ size = Vector2(761.5, 291)
 script = ExtResource("2_sno0v")
 instruction = "Spin!"
 control_scheme = 1
+music = ExtResource("3_fishd")
 
 [node name="background" type="TextureRect" parent="." index="1"]
 layout_mode = 0

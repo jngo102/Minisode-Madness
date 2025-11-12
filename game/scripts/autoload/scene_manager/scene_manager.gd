@@ -15,8 +15,8 @@ var current_level: Node:
 ## Generic scene change function
 func change_scene(scene: PackedScene) -> Node:
 	var transition_screen: TransitionScreen = UIManager.open_ui(TransitionScreen)
-	await transition_screen.transitioned
 	current_level.queue_free()
+	await transition_screen.transitioned
 	var level = scene.instantiate()
 	screen.add_child(level)
 	scene_changed.emit(scene.resource_name)

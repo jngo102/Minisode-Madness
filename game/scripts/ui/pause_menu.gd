@@ -9,11 +9,11 @@ var main_menu_scene: PackedScene = preload("uid://vstl3bg568s7")
 ## The texture that blurs when the pause menu appears
 @onready var background_blur: TextureRect = $background_blur
 ## Parent container of menu buttons list
-@onready var margin_container: MarginContainer = $margin_container
+@onready var margin_container: MarginContainer = $panel/margin_container
 ## Parent of the main pause menu buttons
 @onready var menu_buttons: VBoxContainer = margin_container.get_node_or_null("menu_buttons")
 ## A confirmation warning that appears when quitting the game
-@onready var quit_warning: VBoxContainer = margin_container.get_node_or_null("quit_warning")
+@onready var quit_warning: Panel = margin_container.get_node_or_null("quit_warning")
 
 ## Only allow closing while an animation is not playing
 var can_toggle: bool:
@@ -67,6 +67,7 @@ func _on_quit_button_pressed() -> void:
 
 func _on_quit_warning_quit_confirmed() -> void:
 	close()
+	MinigameManager.level_timer.stop()
 	SceneManager.change_scene(main_menu_scene)
 
 func _on_quit_warning_quit_canceled() -> void:

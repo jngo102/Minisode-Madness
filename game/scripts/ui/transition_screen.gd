@@ -23,7 +23,7 @@ func open() -> void:
 	var texture: Texture2D = portraits[randi() % len(portraits)]
 	while texture == last_portrait:
 		texture = portraits[randi() % len(portraits)]
-	AudioManager.play_music(track, 0, 0.25)
+	AudioManager.play_music(track, 0, 0, true)
 	last_track = track
 	portrait.texture = texture
 	last_portrait = texture

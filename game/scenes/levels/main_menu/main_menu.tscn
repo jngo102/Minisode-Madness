@@ -1,43 +1,90 @@
-[gd_scene load_steps=7 format=3 uid="uid://vstl3bg568s7"]
+[gd_scene load_steps=26 format=3 uid="uid://vstl3bg568s7"]
 
 [ext_resource type="PackedScene" uid="uid://xmhpn38awq6d" path="res://game/scenes/ui/menu_button.tscn" id="1_7ds0w"]
 [ext_resource type="Script" uid="uid://csrwcerd3crd3" path="res://game/scripts/levels/main_menu/main_menu.gd" id="1_wmvsf"]
+[ext_resource type="Texture2D" uid="uid://d23foxleyy0ps" path="res://game/assets/art/main_menu/mainmenubg.png" id="2_bo16a"]
 [ext_resource type="Script" uid="uid://bm02d64u6uy4y" path="res://game/scripts/ui/wrapping_vertical_list.gd" id="2_dtwp4"]
+[ext_resource type="Texture2D" uid="uid://13nl6jye32h3" path="res://game/assets/art/main_menu/tvface.png" id="2_qvpn1"]
+[ext_resource type="Texture2D" uid="uid://efhmubpsjvqp" path="res://game/assets/art/main_menu/bubble.png" id="3_32bhj"]
 [ext_resource type="PackedScene" uid="uid://8agf2mc41tgx" path="res://game/scenes/ui/quit_warning.tscn" id="3_eripy"]
-[ext_resource type="Texture2D" uid="uid://caqu26428g26i" path="res://game/assets/art/ui/start_button.png" id="4_dtwp4"]
-[ext_resource type="Texture2D" uid="uid://bevs3721s6w5m" path="res://game/assets/art/ui/options_button.png" id="5_jwn4h"]
+[ext_resource type="Texture2D" uid="uid://bpnaj7lvv0185" path="res://game/assets/art/main_menu/tvface3.png" id="3_fr21i"]
+[ext_resource type="Texture2D" uid="uid://db451iu5q7kgm" path="res://game/assets/art/main_menu/shrromjamnew.png" id="3_nyhi5"]
+[ext_resource type="Texture2D" uid="uid://xfvrra0hmawj" path="res://game/assets/art/main_menu/sparkle1.png" id="3_ywksx"]
+[ext_resource type="Texture2D" uid="uid://l1d1kjimelie" path="res://game/assets/art/main_menu/shroomjamnew2.png" id="4_32bhj"]
+[ext_resource type="Texture2D" uid="uid://bl7roce0kttd1" path="res://game/assets/art/main_menu/tvface2.png" id="4_agfkh"]
+[ext_resource type="Texture2D" uid="uid://1a633nqpsuc8" path="res://game/assets/art/main_menu/sparkle2.png" id="4_bo16a"]
+[ext_resource type="Texture2D" uid="uid://qrvmg8par4pi" path="res://game/assets/art/main_menu/start_text.png" id="4_jwn4h"]
+[ext_resource type="Texture2D" uid="uid://2t847fji8twh" path="res://game/assets/art/main_menu/sparkle3.png" id="5_25ids"]
+[ext_resource type="Texture2D" uid="uid://dslloehfhrioq" path="res://game/assets/art/main_menu/options_text.png" id="5_jwn4h"]
+[ext_resource type="Texture2D" uid="uid://caqve70wwdjy0" path="res://game/assets/art/main_menu/titlecardnew.png" id="6_32bhj"]
+[ext_resource type="Texture2D" uid="uid://dr6bsoxaefirq" path="res://game/assets/art/main_menu/vs1.png" id="7_ke1ta"]
+[ext_resource type="Texture2D" uid="uid://cpfcwnm2blrbl" path="res://game/assets/art/main_menu/vs2.png" id="8_0osjy"]
+[ext_resource type="Texture2D" uid="uid://oltkubemt6qp" path="res://game/assets/art/main_menu/vs3.png" id="9_0yeo6"]
+[ext_resource type="PackedScene" uid="uid://vxk46hnnh0ba" path="res://game/scenes/ui/options_panel.tscn" id="21_0osjy"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_syven"]
+frames = 2
+frame_0/texture = ExtResource("3_nyhi5")
+frame_1/texture = ExtResource("4_32bhj")
+frame_1/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_0jfbc"]
+frames = 3
+frame_0/texture = ExtResource("7_ke1ta")
+frame_1/texture = ExtResource("8_0osjy")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("9_0yeo6")
+frame_2/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_fr21i"]
+frames = 3
+frame_0/texture = ExtResource("3_ywksx")
+frame_1/texture = ExtResource("4_bo16a")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_25ids")
+frame_2/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_oyds6"]
+frames = 4
+frame_0/texture = ExtResource("2_qvpn1")
+frame_0/duration = 2.0
+frame_1/texture = ExtResource("4_agfkh")
+frame_1/duration = 0.25
+frame_2/texture = ExtResource("3_fr21i")
+frame_2/duration = 3.0
+frame_3/texture = ExtResource("4_agfkh")
+frame_3/duration = 0.5
 
 [node name="main_menu" type="Control"]
 use_parent_material = true
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+pivot_offset = Vector2(320, 240)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 1
 script = ExtResource("1_wmvsf")
 
 [node name="animator" type="AnimationPlayer" parent="."]
 
-[node name="color_rect" type="ColorRect" parent="."]
-use_parent_material = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.74622166, 0, 0.34369737, 1)
-
 [node name="margin_container" type="MarginContainer" parent="."]
 use_parent_material = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -364.0
+offset_top = -264.0
+offset_right = 364.0
+offset_bottom = 264.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
@@ -46,45 +93,110 @@ theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="menu_buttons" type="VBoxContainer" parent="margin_container"]
-use_parent_material = true
+[node name="background" type="TextureRect" parent="margin_container"]
 layout_mode = 2
+texture = ExtResource("2_bo16a")
+
+[node name="bubble" type="TextureRect" parent="margin_container"]
+layout_mode = 2
+texture = ExtResource("3_32bhj")
+
+[node name="bubble_text" type="TextureRect" parent="margin_container"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_syven")
+
+[node name="title" type="TextureRect" parent="margin_container"]
+layout_mode = 2
+texture = ExtResource("6_32bhj")
+
+[node name="shroom" type="TextureRect" parent="margin_container"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_0jfbc")
+
+[node name="sparkles" type="TextureRect" parent="margin_container"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_fr21i")
+
+[node name="tv" type="TextureRect" parent="margin_container"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_oyds6")
+
+[node name="control" type="Control" parent="margin_container"]
+layout_mode = 2
+
+[node name="menu_buttons" type="VBoxContainer" parent="margin_container/control"]
+use_parent_material = true
+layout_mode = 0
+offset_left = -6.0
+offset_top = 97.235
+offset_right = 594.0
+offset_bottom = 497.235
 focus_mode = 2
 alignment = 1
 script = ExtResource("2_dtwp4")
 
-[node name="start_button" parent="margin_container/menu_buttons" instance=ExtResource("1_7ds0w")]
+[node name="start_button" parent="margin_container/control/menu_buttons" instance=ExtResource("1_7ds0w")]
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 6
-texture_normal = ExtResource("4_dtwp4")
+text = ""
+icon = ExtResource("4_jwn4h")
+flat = true
 
-[node name="options_button" parent="margin_container/menu_buttons" instance=ExtResource("1_7ds0w")]
+[node name="options_button" parent="margin_container/control/menu_buttons" instance=ExtResource("1_7ds0w")]
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 6
-texture_normal = ExtResource("5_jwn4h")
+text = ""
+icon = ExtResource("5_jwn4h")
+flat = true
 
-[node name="credits_button" parent="margin_container/menu_buttons" instance=ExtResource("1_7ds0w")]
+[node name="credits_button" parent="margin_container/control/menu_buttons" instance=ExtResource("1_7ds0w")]
+visible = false
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 6
+text = "Credits"
 
-[node name="quit_button" parent="margin_container/menu_buttons" instance=ExtResource("1_7ds0w")]
+[node name="quit_button" parent="margin_container/control/menu_buttons" instance=ExtResource("1_7ds0w")]
+visible = false
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 6
+text = "Quit"
 
 [node name="quit_warning" parent="." instance=ExtResource("3_eripy")]
 visible = false
 layout_mode = 1
+offset_left = -180.0
+offset_top = -45.0
+offset_right = 180.0
+offset_bottom = 45.0
 
-[connection signal="pressed" from="margin_container/menu_buttons/start_button" to="." method="_on_start_button_pressed"]
-[connection signal="visibility_changed" from="margin_container/menu_buttons/start_button" to="." method="_on_start_button_visibility_changed"]
-[connection signal="pressed" from="margin_container/menu_buttons/options_button" to="." method="_on_options_button_pressed"]
-[connection signal="visibility_changed" from="margin_container/menu_buttons/options_button" to="." method="_on_start_button_visibility_changed"]
-[connection signal="pressed" from="margin_container/menu_buttons/credits_button" to="." method="_on_credits_button_pressed"]
-[connection signal="visibility_changed" from="margin_container/menu_buttons/credits_button" to="." method="_on_start_button_visibility_changed"]
-[connection signal="pressed" from="margin_container/menu_buttons/quit_button" to="." method="_on_quit_button_pressed"]
+[node name="options_panel" parent="." instance=ExtResource("21_0osjy")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -240.0
+offset_top = -160.0
+offset_right = 240.0
+offset_bottom = 160.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="pressed" from="margin_container/control/menu_buttons/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="visibility_changed" from="margin_container/control/menu_buttons/start_button" to="." method="_on_start_button_visibility_changed"]
+[connection signal="pressed" from="margin_container/control/menu_buttons/options_button" to="." method="_on_options_button_pressed"]
+[connection signal="visibility_changed" from="margin_container/control/menu_buttons/options_button" to="." method="_on_start_button_visibility_changed"]
+[connection signal="pressed" from="margin_container/control/menu_buttons/credits_button" to="." method="_on_credits_button_pressed"]
+[connection signal="visibility_changed" from="margin_container/control/menu_buttons/credits_button" to="." method="_on_start_button_visibility_changed"]
+[connection signal="pressed" from="margin_container/control/menu_buttons/quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="quit_canceled" from="quit_warning" to="." method="_on_quit_warning_quit_canceled"]
 [connection signal="quit_confirmed" from="quit_warning" to="." method="_on_quit_warning_quit_confirmed"]
+[connection signal="hidden" from="options_panel" to="." method="_on_options_panel_hidden"]
+
+[editable path="quit_warning"]
