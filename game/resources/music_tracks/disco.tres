@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MusicTrack" load_steps=3 format=3 uid="uid://cjtna6eiiahv2"]
+
+[ext_resource type="Script" uid="uid://b6x7l1sjv8r1u" path="res://game/scripts/autoload/audio_manager/music_track.gd" id="1_0vbh2"]
+[ext_resource type="AudioStream" uid="uid://bowga11obcnsg" path="res://game/assets/music/disco_music.wav" id="1_4ksqi"]
+
+[resource]
+script = ExtResource("1_0vbh2")
+music_clip = ExtResource("1_4ksqi")
+metadata/_custom_type_script = "uid://b6x7l1sjv8r1u"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MusicTrack" load_steps=3 format=3 uid="uid://bd57s88y2y2de"]
+
+[ext_resource type="Script" uid="uid://b6x7l1sjv8r1u" path="res://game/scripts/autoload/audio_manager/music_track.gd" id="1_d5wng"]
+[ext_resource type="AudioStream" uid="uid://begbpehc71pax" path="res://game/assets/music/cooking_music.wav" id="1_u18ga"]
+
+[resource]
+script = ExtResource("1_d5wng")
+music_clip = ExtResource("1_u18ga")
+metadata/_custom_type_script = "uid://b6x7l1sjv8r1u"

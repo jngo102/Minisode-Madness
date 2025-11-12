@@ -9,6 +9,7 @@ extends MinigameLevel
 @onready var panel: Panel = yapper.get_node_or_null("panel")
 
 var mute_bg: Texture2D = preload("uid://bt6jr558643on")
+var mute_zip: AudioStream = preload("uid://buy3u8tqd54mc")
 
 func _ready() -> void:
 	await super._ready()
@@ -25,6 +26,13 @@ func _exit_tree() -> void:
 	AudioManager.current_music_player.volume_db = 0
 	Engine.time_scale = 1
 
+func win() -> void:
+	super.win()
+	yapper_anim.play("mute")
+	AudioManager.play_clip(mute_zip)
+	bg.texture = mute_bg
+	panel.queue_free()
+
 func lose() -> void:
 	super.lose()
 	panel.queue_free()
@@ -32,8 +40,5 @@ func lose() -> void:
 func _on_value_slider_value_changed(value: float) -> void:
 	voice.volume_db = value
 	if value <= AudioManager.audio_off_db:
-		yapper_anim.play("mute")
 		win()
-		bg.texture = mute_bg
 		MinigameManager.end_game()
-		panel.queue_free()

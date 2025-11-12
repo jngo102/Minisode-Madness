@@ -5,6 +5,8 @@ extends MinigameLevel
 
 var cursor_scene: PackedScene = preload("uid://bbvasjlghjsv0")
 
+var scream_clip: AudioStream = preload("uid://ci2ytpvgmqv0q")
+
 func _ready() -> void:
 	await super._ready()
 	await _start_game(15)
@@ -23,6 +25,7 @@ func lose() -> void:
 	ferris_wheel.grab_collision.disabled = true
 
 func _on_ferris_wheel_unhinge() -> void:
+	AudioManager.play_clip(scream_clip)
 	win()
 	rotate_dir.hide()
 	MinigameManager.end_game()

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bgl2byam5vqoa" path="res://game/scenes/levels/minigame_level.tscn" id="1_aplxx"]
 [ext_resource type="Script" uid="uid://bjef51xdsex7g" path="res://game/scripts/levels/pancake_flipper/pancake_flipper.gd" id="2_10lhb"]
 [ext_resource type="Texture2D" uid="uid://bkeivtb4l473v" path="res://game/assets/art/world/pancake/stove.png" id="3_hxukd"]
-[ext_resource type="Resource" uid="uid://d1cg3dr5ji72a" path="res://game/resources/music_tracks/pancake.tres" id="3_sp07d"]
+[ext_resource type="Resource" uid="uid://bd57s88y2y2de" path="res://game/resources/music_tracks/cooking.tres" id="3_sp07d"]
 [ext_resource type="Texture2D" uid="uid://wbp284kc520h" path="res://game/assets/art/world/pancake/pancakeflip1.png" id="4_4akc8"]
 [ext_resource type="Texture2D" uid="uid://btlbpprjiwppi" path="res://game/assets/art/world/pancake/pan.png" id="4_wbri1"]
 [ext_resource type="Texture2D" uid="uid://cvub124d346s6" path="res://game/assets/art/world/pancake/pancakeflipped.png" id="5_o8le1"]
@@ -104,6 +104,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("contents/pan/pancake:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ah2rs"]
 resource_name = "burn"
@@ -145,6 +157,46 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.7806386, 0.69982374, 0.68853426, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wh38a"]
+resource_name = "flip_bad"
+length = 0.625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("contents/pan:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.25, 1.25), Vector2(1.25, 1.25), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("contents/pan/pancake:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_wbri1"), ExtResource("4_4akc8"), ExtResource("5_wbri1")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("contents/pan/pancake:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.25, 1.25), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_xdytq"]
@@ -212,33 +264,17 @@ tracks/4/keys = {
 "method": &"play_meat"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_wh38a"]
-resource_name = "flip_bad"
-length = 0.625
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("contents/pan:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.375, 0.5),
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("contents/pan/pancake:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.35, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.25, 1.25), Vector2(1.25, 1.25), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("contents/pan/pancake:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.375),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("5_wbri1"), ExtResource("4_4akc8"), ExtResource("5_wbri1")]
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.25, 1.25), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oq4yh"]
@@ -272,6 +308,7 @@ frame_4/duration = 1.0
 
 [node name="pancake_flipper" instance=ExtResource("1_aplxx")]
 script = ExtResource("2_10lhb")
+max_cook_time = 4.0
 instruction = "Flip!"
 music = ExtResource("3_sp07d")
 

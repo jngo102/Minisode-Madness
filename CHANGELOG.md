@@ -1,6 +1,13 @@
 # Vinisodes Change log
 
-## [0.3.0] - 2025-11-1
+## [0.4.0] - 2025-11-1
+
+### Added
+
+- More music/SFX
+
+
+## [0.3.0] - 2025-11-11
 
 ### Added
 

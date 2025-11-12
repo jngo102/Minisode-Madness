@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="MusicTrack" load_steps=3 format=3 uid="uid://d1cg3dr5ji72a"]
-
-[ext_resource type="AudioStream" uid="uid://c2p2o34av5y8g" path="res://game/assets/music/carnival_music.wav" id="1_0xecy"]
-[ext_resource type="Script" uid="uid://b6x7l1sjv8r1u" path="res://game/scripts/autoload/audio_manager/music_track.gd" id="1_q24wj"]
-
-[resource]
-script = ExtResource("1_q24wj")
-music_clip = ExtResource("1_0xecy")
-metadata/_custom_type_script = "uid://b6x7l1sjv8r1u"

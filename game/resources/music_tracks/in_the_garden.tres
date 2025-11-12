@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="MusicTrack" load_steps=3 format=3 uid="uid://do3rawawtp46b"]
-
-[ext_resource type="Script" uid="uid://b6x7l1sjv8r1u" path="res://game/scripts/autoload/audio_manager/music_track.gd" id="1_65dib"]
-[ext_resource type="AudioStream" uid="uid://dwqd0snks318j" path="res://game/assets/music/in_the_garden.wav" id="1_a5kpn"]
-
-[resource]
-script = ExtResource("1_65dib")
-music_clip = ExtResource("1_a5kpn")
-metadata/_custom_type_script = "uid://b6x7l1sjv8r1u"

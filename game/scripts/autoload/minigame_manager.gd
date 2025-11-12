@@ -47,7 +47,7 @@ func start(time: float = 15) -> void:
 	level_timer.start(time)
 
 func _on_game_end() -> void:
-	await get_tree().create_timer(2, false).timeout
+	await get_tree().create_timer(4, false).timeout
 	if is_instance_valid(current_level):
 		current_level.game_ended.disconnect(_on_game_end)
 	if lives_left > 0:
