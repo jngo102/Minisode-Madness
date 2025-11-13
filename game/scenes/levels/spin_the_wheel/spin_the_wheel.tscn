@@ -37,7 +37,7 @@ position = Vector2(333.75, 476.5)
 shape = SubResource("RectangleShape2D_ffslj")
 
 [node name="rotate_direction" type="Sprite2D" parent="." index="6"]
-position = Vector2(354, 208.00002)
+position = Vector2(307, 223.00002)
 rotation = -0.3193969
 scale = Vector2(2, 2)
 texture = ExtResource("6_sno0v")

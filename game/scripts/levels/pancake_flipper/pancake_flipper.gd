@@ -1,6 +1,6 @@
 extends MinigameLevel
 
-@export var max_cook_time: float = 4
+@export var max_cook_time: float = 3.0
 
 @onready var anim: AnimationPlayer = $anim
 
@@ -10,13 +10,14 @@ var cook_time: float
 
 func _ready() -> void:
 	await super._ready()
-	await _start_game(max_cook_time, randf_range(4, 8))
+	await _start_game(max_cook_time / MinigameManager.level, randf_range(4, 8))
+	$spacebar.show()
 	anim.play("cook")
 
 func _process(delta: float) -> void:
-	if started and not finished:
+	if started:
 		cook_time += delta
-		if cook_time > max_cook_time:
+		if cook_time > max_cook_time / MinigameManager.level:
 			anim.play("burn")
 			lose()
 

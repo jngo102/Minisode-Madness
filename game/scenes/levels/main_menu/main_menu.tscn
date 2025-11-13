@@ -169,7 +169,6 @@ layout_mode = 2
 size_flags_horizontal = 6
 text = ""
 icon = ExtResource("4_jwn4h")
-flat = true
 
 [node name="options_button" parent="margin_container/control/menu_buttons" instance=ExtResource("1_7ds0w")]
 use_parent_material = true
@@ -177,7 +176,6 @@ layout_mode = 2
 size_flags_horizontal = 6
 text = ""
 icon = ExtResource("5_jwn4h")
-flat = true
 
 [node name="credits_button" parent="margin_container/control/menu_buttons" instance=ExtResource("1_7ds0w")]
 visible = false

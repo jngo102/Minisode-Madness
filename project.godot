@@ -40,6 +40,8 @@ window/size/viewport_width=960
 window/size/viewport_height=540
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+mouse_cursor/custom_image="res://game/assets/art/ui/cursor.png"
+mouse_cursor/custom_image_hotspot=Vector2(25, 40)
 
 [dotnet]
 

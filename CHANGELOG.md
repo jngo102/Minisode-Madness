@@ -5,6 +5,8 @@
 ### Added
 
 - TV border
+- Opening cutscene
+- Many tweaks
 
 ## [0.4.0] - 2025-11-12
 

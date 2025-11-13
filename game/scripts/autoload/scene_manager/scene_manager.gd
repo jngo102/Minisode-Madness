@@ -13,12 +13,16 @@ var current_level: Node:
 		return screen.get_child(0)
 
 ## Generic scene change function
-func change_scene(scene: PackedScene) -> Node:
-	var transition_screen: TransitionScreen = UIManager.open_ui(TransitionScreen)
+func change_scene(scene: PackedScene, no_transition: bool = false) -> Node:
+	var transition_screen: TransitionScreen = UIManager.get_ui(TransitionScreen)
+	if not no_transition:
+		transition_screen.open()
 	current_level.queue_free()
-	await transition_screen.transitioned
+	if not no_transition:
+		await transition_screen.transitioned
 	var level = scene.instantiate()
 	screen.add_child(level)
 	scene_changed.emit(scene.resource_name)
-	transition_screen.close()
+	if not no_transition:
+		transition_screen.close()
 	return level

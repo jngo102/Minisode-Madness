@@ -8,12 +8,18 @@ class_name TransitionScreen extends BaseUI
 @onready var video_player: VideoStreamPlayer = $video_player
 @onready var portrait: TextureRect = $portrait
 @onready var lives: Control = $lives
+@onready var win: TextureRect = $transitions/win
+@onready var lose: TextureRect = $transitions/lose
+@onready var speed_up: AnimationPlayer = $speed_up
 
 var last_track: MusicTrack
 var last_portrait: Texture2D
 
 ## Emitted when the screen finishes transitioning in
 signal transitioned
+
+func _ready() -> void:
+	MinigameManager.level_changed.connect(_on_level_change)
 
 func open() -> void:
 	super.open()
@@ -36,6 +42,18 @@ func open() -> void:
 	portrait.texture = texture
 	last_portrait = texture
 	video_player.play()
+	$static.show()
+	if is_instance_valid(MinigameManager.current_level):
+		if MinigameManager.last_game_won:
+			lose.show()
+			win.hide()
+		else:
+			win.show()
+			lose.hide()
 
 func _on_video_player_finished() -> void:
 	transitioned.emit()
+	$static.hide()
+
+func _on_level_change(new_level: int) -> void:
+	speed_up.play("show")

@@ -25,20 +25,20 @@ var volume_tween: Tween
 ## Music volume combined with master volume
 var music_volume: float:
 	get:
-		return 1#remap(SaveManager.settings.master_volume * SaveManager.settings.music_volume, 0.0, 1.0, AUDIO_OFF_DB, 0)
+		return remap(SaveManager.settings.master_volume * SaveManager.settings.music_volume, 0.0, 1.0, audio_off_db, 0)
 	
 ## SFX volume combined with master volume
-var sfx_volume: float:
+var sfx_volume_scale: float:
 	get:
-		return 1#remap(SaveManager.settings.master_volume * SaveManager.settings.sfx_volume, 0.0, 1.0, AUDIO_OFF_DB, 0)
+		return SaveManager.settings.master_volume * SaveManager.settings.sfx_volume
 
 func _ready() -> void:
 	update_music_volume()
 	
 ## Play a one shot audio clip
-func play_clip(clip: AudioStream, pitch_min: float = 1, pitch_max: float = 1) -> AudioStreamPlayer2D:
+func play_clip(clip: AudioStream, pitch_min: float = 1, pitch_max: float = 1, volume_scale: float = 1.0) -> AudioStreamPlayer2D:
 	var audio_player: AudioStreamPlayer2D = audio_player_prefab.instantiate()
-	audio_player.volume_db = sfx_volume * SaveManager.settings.master_volume * SaveManager.settings.sfx_volume
+	audio_player.volume_db = remap(volume_scale * sfx_volume_scale, 0.0, 1.0, audio_off_db, 0.0)
 	audio_player.pitch_scale = randf_range(pitch_min, pitch_max)
 	audio_player.finished.connect(func(): audio_player.queue_free())
 	audio_player.stream = clip

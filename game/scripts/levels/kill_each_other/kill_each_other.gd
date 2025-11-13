@@ -27,7 +27,10 @@ func _ready() -> void:
 	player_gun.fired.connect(_on_player_gun_fire)
 	gun_container.add_child(player_gun)
 	cowboy.draw()
-	cowboy.died.connect(win)
+	cowboy.died.connect(func():
+		win()
+		MinigameManager.end_game()
+	)
 
 func _on_player_gun_fire() -> void:
 	cam_shaker.shake(1, 0.1, true)

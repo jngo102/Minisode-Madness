@@ -38,7 +38,7 @@ layout_mode = 2
 [node name="option_name" type="Label" parent="content/options_list/master_volume"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Mastet Volume"
+text = "Master Volume"
 horizontal_alignment = 2
 
 [node name="value_slider" type="HSlider" parent="content/options_list/master_volume"]

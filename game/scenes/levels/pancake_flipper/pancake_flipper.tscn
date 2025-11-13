@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://6y621gmfnc1i"]
+[gd_scene load_steps=27 format=3 uid="uid://6y621gmfnc1i"]
 
 [ext_resource type="PackedScene" uid="uid://bgl2byam5vqoa" path="res://game/scenes/levels/minigame_level.tscn" id="1_aplxx"]
 [ext_resource type="Script" uid="uid://bjef51xdsex7g" path="res://game/scripts/levels/pancake_flipper/pancake_flipper.gd" id="2_10lhb"]
@@ -306,11 +306,23 @@ frame_3/duration = 1.0
 frame_4/texture = ExtResource("10_4akc8")
 frame_4/duration = 1.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp07d"]
+bg_color = Color(0.7411765, 0.95686275, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.29411766, 0.14901961, 0.38431373, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [node name="pancake_flipper" instance=ExtResource("1_aplxx")]
 script = ExtResource("2_10lhb")
 max_cook_time = 4.0
-instruction = "Flip!"
-start = "PRESS SPACE!"
+instruction = "Let it cook!"
+start = "FLIP!"
 music = ExtResource("3_sp07d")
 
 [node name="anim" type="AnimationPlayer" parent="." index="0"]
@@ -406,3 +418,31 @@ offset_top = -180.0
 offset_right = 320.0
 offset_bottom = 220.0
 texture = ExtResource("16_ah2rs")
+
+[node name="spacebar" type="Panel" parent="." index="5"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 137.0
+offset_right = 128.0
+offset_bottom = 201.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sp07d")
+
+[node name="label" type="Label" parent="spacebar" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "SPACE"
+horizontal_alignment = 1
+vertical_alignment = 1

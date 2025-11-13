@@ -13,7 +13,7 @@ var mute_zip: AudioStream = preload("uid://buy3u8tqd54mc")
 
 func _ready() -> void:
 	await super._ready()
-	await _start_game(10)
+	await _start_game(8 - MinigameManager.level * 3.0)
 	panel.show()
 	yapper_anim.play("yap")
 	voice.play()

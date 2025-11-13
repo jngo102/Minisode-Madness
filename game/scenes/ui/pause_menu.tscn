@@ -150,9 +150,13 @@ text = "Quit"
 visible = false
 layout_mode = 2
 
-[node name="options_panel" parent="panel/margin_container" instance=ExtResource("5_16opm")]
+[node name="options_panel" parent="." instance=ExtResource("5_16opm")]
 visible = false
-layout_mode = 2
+layout_mode = 1
+offset_left = -240.0
+offset_top = -160.0
+offset_right = 240.0
+offset_bottom = 160.0
 
 [connection signal="animation_finished" from="animator" to="." method="_on_animator_animation_finished"]
 [connection signal="pressed" from="panel/margin_container/menu_buttons/resume_button" to="." method="_on_resume_button_pressed"]

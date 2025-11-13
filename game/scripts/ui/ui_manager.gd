@@ -36,7 +36,9 @@ var in_closeable_ui: bool:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		var transition_screen := get_ui(TransitionScreen)
-		if is_instance_valid(transition_screen) and not transition_screen.visible and SceneManager.current_level.name != "main_menu":
+		if is_instance_valid(transition_screen) and not transition_screen.visible and \
+			SceneManager.current_level.name != "main_menu" and \
+			SceneManager.current_level.name != "opening_cutscene":
 			var pause_menu: PauseMenu = get_ui(PauseMenu)
 			if pause_menu:
 				if pause_menu.visible:
@@ -86,14 +88,17 @@ func delete_ui(ui: GDScript) -> void:
 	instantiated_uis.erase(ui_to_delete)
 
 ## Fetch a UI instance
-func get_ui(ui: GDScript) -> BaseUI:
+func get_ui(ui: GDScript, start_closed: bool = true) -> BaseUI:
 	var found_uis = instantiated_uis.filter(func(instantiated_ui):
 		return instantiated_ui.get_script() == ui
 	)
 	if len(found_uis) > 0:
 		return found_uis[0]
-		
-	return null
+	else:
+		var new_ui: BaseUI = create_ui(ui)
+		if start_closed:
+			new_ui.close()
+		return new_ui
 
 ## Open a UI
 func open_ui(ui: GDScript) -> BaseUI:

@@ -50,14 +50,15 @@ func _ready() -> void:
 
 func _start_game(time: float = 10, initial_wait: float = 2) -> void:
 	await get_tree().create_timer(initial_wait, false).timeout
-	MinigameManager.level_timer.start(time / MinigameManager.level)
+	if not finished:
+		MinigameManager.level_timer.start(time / MinigameManager.level)
+		level_timer.in_progress = true
+		started = true
 	label.text = start
 	var label_tween: Tween = create_tween()
 	label_tween.tween_property(label, "position", Vector2(Globals.SCREEN_WIDTH / 2 - label.size.x / 2, 64), 0.25).from(Vector2(Globals.SCREEN_WIDTH / 2 - label.size.x, 64)).set_trans(Tween.TRANS_LINEAR)
 	label_tween.parallel().tween_property(label, "scale", Vector2.ONE, 0.25).from(Vector2.ONE * 2).set_trans(Tween.TRANS_LINEAR)
 	label_tween.tween_property(label, "self_modulate", Color.TRANSPARENT, 1).from(Color.WHITE).set_trans(Tween.TRANS_LINEAR)
-	level_timer.in_progress = true
-	started = true
 
 func win() -> void:
 	if finished:

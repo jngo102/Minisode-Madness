@@ -22,7 +22,7 @@ func _ready() -> void:
 		total_lines += 1
 	code_file = FileAccess.open("res://game/assets/text/code.txt", FileAccess.READ)
 	await super._ready()
-	_start_game(25)
+	_start_game(23 - MinigameManager.level)
 	while code_lines.get_child_count() <= 1:
 		if is_instance_valid(terminal):
 			terminal.text = "hacker@hacknet: ~$"

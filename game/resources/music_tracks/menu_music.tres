@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="MusicTrack" load_steps=3 format=3 uid="uid://c0dxy53i8aplb"]
 
 [ext_resource type="Script" uid="uid://b6x7l1sjv8r1u" path="res://game/scripts/autoload/audio_manager/music_track.gd" id="1_8t707"]
-[ext_resource type="AudioStream" uid="uid://co2w1yksdtd5b" path="res://game/assets/music/Cyberpunk Moonlight Sonata v2.mp3" id="1_rcf8g"]
+[ext_resource type="AudioStream" uid="uid://cmylofdhnpbj7" path="res://game/assets/music/main_menu.wav" id="1_rcf8g"]
 
 [resource]
 script = ExtResource("1_8t707")
