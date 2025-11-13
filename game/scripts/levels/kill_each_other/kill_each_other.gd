@@ -1,6 +1,6 @@
 extends MinigameLevel
 
-@export var min_time: float = 1
+@export var min_time: float = 2
 @export var max_time: float = 4
 
 var kill_each_other_clip: AudioStream = preload("uid://psyam32srtqq")

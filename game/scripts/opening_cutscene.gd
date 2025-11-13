@@ -4,6 +4,9 @@ extends TextureRect
 
 var main_menu_scene: PackedScene = preload("uid://vstl3bg568s7")
 
+var show_skip: bool
+var fading: bool
+
 func _ready() -> void:
 	var anim_texture := AnimatedTexture.new()
 	anim_texture.frames = len(frames)
@@ -14,12 +17,14 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if texture is AnimatedTexture:
-		if texture.current_frame >= len(frames) - 1:
-			skip()
+		if texture.current_frame >= len(frames) - 1 and not fading:
+			SceneManager.change_scene_fade(main_menu_scene, 2)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") or event.is_action_pressed("ui_accept"):
-		skip()
-
-func skip() -> void:
-	SceneManager.change_scene(main_menu_scene, true)
+	if event is InputEventKey and event.is_pressed():
+		if not show_skip:
+			show_skip = true
+			$skip.show()
+		else:
+			fading = true
+			SceneManager.change_scene_fade(main_menu_scene, 2)

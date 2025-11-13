@@ -15,7 +15,7 @@ var lives_left: int
 var level: int = 1:
 	set(value):
 		level = value
-		if value > 1:
+		if value > 1 and value <= 3:
 			level_changed.emit(value)
 
 var current_level: MinigameLevel
@@ -49,7 +49,7 @@ func load_random_level() -> void:
 	current_level = await SceneManager.change_scene(next_level)
 	current_level.game_ended.connect(_on_game_end)
 	previous_levels.append(level_name)
-	if len(previous_levels) >= len(levels) / 2:
+	if len(previous_levels) >= len(levels) - 1:
 		previous_levels.remove_at(0)
 
 func start(time: float = 15) -> void:
@@ -57,17 +57,22 @@ func start(time: float = 15) -> void:
 
 func _on_game_end() -> void:
 	await get_tree().create_timer(4, false).timeout
+	last_game_won = current_level.won_game
+	if last_game_won:
+		games_won += 1
+	else:
+		lives_left -= 1
+	if lives_left <= 0:
+		game_over()
+		return
 	if is_instance_valid(current_level):
 		current_level.game_ended.disconnect(_on_game_end)
-	if games_won > 0 and games_won % speed_up_num_rounds == 0:
+	if last_game_won and games_won > 0 and games_won % speed_up_num_rounds == 0:
 		speed_up()
 	if level > 3:
 		game_win()
 		return
-	if lives_left > 0:
-		load_random_level()
-	else:
-		game_over()
+	load_random_level()
 
 func speed_up() -> void:
 	if level <= 3:
@@ -75,21 +80,20 @@ func speed_up() -> void:
 
 func end_game() -> void:
 	level_timer.stop()
-	if is_instance_valid(current_level) and not current_level.won_game:
-		current_level.lose()
-	last_game_won = current_level.won_game
-	if last_game_won:
-		games_won += 1
-	current_level.end_game()
+	if is_instance_valid(current_level):
+		if not current_level.won_game:
+			current_level.lose()
+		current_level.end_game()
 
 func game_over() -> void:
-	print("GAME WIN")
+	print("GAME OVER")
 	current_level = null
-	SceneManager.change_scene(load("uid://vstl3bg568s7"))
+	SceneManager.change_scene_fade(load("uid://bnnfg7a0fbpyn"))
 
 func game_win() -> void:
 	print("VICTORY")
-	SceneManager.change_scene(load("uid://vstl3bg568s7"))
+	await get_tree().create_timer(4, false).timeout
+	SceneManager.change_scene_fade(load("uid://f4p1cmxnhbta"))
 
 func _on_level_timer_timeout() -> void:
 	end_game()

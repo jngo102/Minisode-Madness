@@ -22,10 +22,6 @@ func _process(delta: float) -> void:
 	if not finished:
 		bg.texture = textures[int(1 - MinigameManager.time_left_in_level / MinigameManager.level_duration * len(textures))]
 
-func _exit_tree() -> void:
-	AudioManager.current_music_player.volume_db = 0
-	Engine.time_scale = 1
-
 func win() -> void:
 	super.win()
 	yapper_anim.play("mute")

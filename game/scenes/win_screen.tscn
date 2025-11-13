@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://f4p1cmxnhbta"]
+
+[ext_resource type="Script" uid="uid://0cfthh0pjy4g" path="res://game/scripts/win_screen.gd" id="1_162n3"]
+[ext_resource type="Texture2D" uid="uid://bqkbp4dhd0feq" path="res://game/assets/art/ui/win/winbg.png" id="1_ta8t3"]
+[ext_resource type="Texture2D" uid="uid://bqx73f8xnsmor" path="res://game/assets/art/ui/win/pink.png" id="2_gtagq"]
+[ext_resource type="AnimationLibrary" uid="uid://cqpjumub3rl47" path="res://game/resources/animation_libraries/screen.tres" id="2_nrp37"]
+[ext_resource type="Texture2D" uid="uid://7l5ursy1oq85" path="res://game/assets/art/ui/win/win.png" id="3_tkis4"]
+[ext_resource type="Texture2D" uid="uid://dvlkj5ukx5n10" path="res://game/assets/art/ui/win/winemote1.png" id="4_162n3"]
+[ext_resource type="Texture2D" uid="uid://bbra5u3it6kp0" path="res://game/assets/art/ui/win/winemote2.png" id="5_nrp37"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_i61ht"]
+frames = 2
+frame_0/texture = ExtResource("4_162n3")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("5_nrp37")
+frame_1/duration = 0.5
+
+[node name="win_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_162n3")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": ExtResource("2_nrp37")
+}
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ta8t3")
+
+[node name="text_bg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 239.99982
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gtagq")
+
+[node name="win_text" type="TextureRect" parent="text_bg"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_tkis4")
+
+[node name="emote" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_i61ht")

@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnnfg7a0fbpyn"]
+
+[ext_resource type="Script" uid="uid://bwgiv6lfxu85n" path="res://game/scenes/lose_screen.gd" id="1_dga2k"]
+[ext_resource type="AnimationLibrary" uid="uid://cqpjumub3rl47" path="res://game/resources/animation_libraries/screen.tres" id="1_e0pga"]
+[ext_resource type="Texture2D" uid="uid://bbojppak8g4ph" path="res://game/assets/art/ui/lose/losebg.png" id="1_gt7fl"]
+[ext_resource type="Texture2D" uid="uid://bmhp1eovm75yo" path="res://game/assets/art/ui/lose/green.png" id="2_e0pga"]
+[ext_resource type="Texture2D" uid="uid://ch8tbvch04g04" path="res://game/assets/art/ui/lose/lose.png" id="3_dga2k"]
+[ext_resource type="Texture2D" uid="uid://bqirtvtlcjftu" path="res://game/assets/art/ui/lose/loseemote1.png" id="4_wmeqx"]
+[ext_resource type="Texture2D" uid="uid://dlaj6n18xayx" path="res://game/assets/art/ui/lose/loseemote2.png" id="5_xpr2f"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_awey6"]
+frames = 2
+frame_0/texture = ExtResource("4_wmeqx")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("5_xpr2f")
+frame_1/duration = 0.5
+
+[node name="lose_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dga2k")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": ExtResource("1_e0pga")
+}
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_gt7fl")
+
+[node name="text_bg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 239.99994
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_e0pga")
+
+[node name="win_text" type="TextureRect" parent="text_bg"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_dga2k")
+
+[node name="emote" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_awey6")

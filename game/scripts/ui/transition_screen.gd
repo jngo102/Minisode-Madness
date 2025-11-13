@@ -21,6 +21,10 @@ signal transitioned
 func _ready() -> void:
 	MinigameManager.level_changed.connect(_on_level_change)
 
+func reset() -> void:
+	win.hide()
+	lose.hide()
+
 func open() -> void:
 	super.open()
 	anim.play("tilt")

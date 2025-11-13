@@ -69,3 +69,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tij1l")
 frames = Array[Texture2D]([ExtResource("1_vl3yk"), ExtResource("2_qvxig"), ExtResource("3_ljipr"), ExtResource("4_pie3q"), ExtResource("5_ct3v0"), ExtResource("6_pkm4f"), ExtResource("8_p3ukw"), ExtResource("9_5snnk"), ExtResource("10_h61ld"), ExtResource("11_vbvyn"), ExtResource("12_onbgp"), ExtResource("13_1gwuq"), ExtResource("14_epu4c"), ExtResource("15_xv6t3"), ExtResource("16_b4kt6"), ExtResource("17_k0b7q"), ExtResource("18_mvyyg"), ExtResource("19_1v1uo"), ExtResource("20_qg3d7"), ExtResource("21_1t7f7"), ExtResource("22_pkrkg"), ExtResource("23_cs3fb"), ExtResource("24_nqqgu"), ExtResource("25_fmyva"), ExtResource("26_qq00d"), ExtResource("27_oauek"), ExtResource("28_ifxq5"), ExtResource("29_6esnv"), ExtResource("30_v5kk8"), ExtResource("31_2xfip"), ExtResource("32_jru47"), ExtResource("33_3l8jj"), ExtResource("34_tr5ly"), ExtResource("35_erx2q"), ExtResource("36_npcxf"), ExtResource("37_msgl5"), ExtResource("38_xunti"), ExtResource("39_o1xeg"), ExtResource("40_b6h3j"), ExtResource("41_5on8o"), ExtResource("42_vkbm6"), ExtResource("43_rlbog"), ExtResource("44_g4hc0"), ExtResource("45_0kxfb"), ExtResource("46_ep2od"), ExtResource("47_iafuc"), ExtResource("48_8nrjp"), ExtResource("49_wubpl"), ExtResource("50_qtgur"), ExtResource("51_02dms"), ExtResource("52_8j0on"), ExtResource("53_i6w1h"), ExtResource("54_j7qe2"), ExtResource("55_ci1d5"), ExtResource("56_ts3g1"), ExtResource("57_cb3ul"), ExtResource("58_sga73"), ExtResource("59_hnp8g"), ExtResource("60_jfx0y")])
+
+[node name="skip" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 287.0
+offset_top = 414.0
+offset_right = 623.0
+offset_bottom = 440.0
+text = "Press any key to continue..."
+horizontal_alignment = 1
+vertical_alignment = 1

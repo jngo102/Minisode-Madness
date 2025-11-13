@@ -20,11 +20,10 @@ func _ready() -> void:
 		_quit_button.hide()
 
 func _on_start_button_pressed() -> void:
-	#create_tween().tween_property(flowerwall_crt, "modulate", Color.TRANSPARENT, 1).from_current().set_trans(Tween.TRANS_LINEAR)
+	UIManager.get_ui(TransitionScreen).reset()
 	MinigameManager.reset()
 	MinigameManager.load_random_level()
-	#SceneManager.change_scene(load("uid://b3neoogxgx3lr"))
-
+	
 func _on_options_button_pressed() -> void:
 	_margin_container.hide()
 	_options_panel.show()

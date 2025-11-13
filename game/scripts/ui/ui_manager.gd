@@ -9,6 +9,7 @@ extends Control
 
 ## UIs that cannot be closed by pressing "ui_cancel"
 var non_closeable_uis: Array[String] = [
+	"fader",
 	"transition_screen"
 ]
 

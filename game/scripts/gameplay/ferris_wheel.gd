@@ -37,7 +37,7 @@ func _input(event: InputEvent) -> void:
 			_grab(event)
 		elif not event.is_pressed() and is_grabbing:
 			is_grabbing = false
-			if not is_instance_valid(spinning_player):
+			if is_instance_valid(spinning_player):
 				spinning_player.stop()
 	elif is_grabbing and event is InputEventMouseMotion:
 		_spin(event)

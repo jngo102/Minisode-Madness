@@ -71,7 +71,7 @@ func _on_quit_button_pressed() -> void:
 
 func _on_quit_warning_quit_confirmed() -> void:
 	close()
-	MinigameManager.game_over()
+	SceneManager.change_scene_fade(main_menu_scene, 2)
 
 func _on_quit_warning_quit_canceled() -> void:
 	quit_warning.hide()
