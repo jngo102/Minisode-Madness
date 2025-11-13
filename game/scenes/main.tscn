@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4apxkm0xtxpr"]
+[gd_scene load_steps=4 format=3 uid="uid://c4apxkm0xtxpr"]
 
 [ext_resource type="PackedScene" uid="uid://vstl3bg568s7" path="res://game/scenes/levels/main_menu/main_menu.tscn" id="1_5cikp"]
 [ext_resource type="Script" uid="uid://bng53nxyo6ib3" path="res://game/scripts/main.gd" id="1_h7yf5"]
+[ext_resource type="Texture2D" uid="uid://ceftkvsbp5bkr" path="res://game/assets/art/TV.png" id="3_gp8w2"]
 
 [node name="main" type="CenterContainer"]
 anchors_preset = 15
@@ -27,3 +28,15 @@ size_2d_override_stretch = true
 render_target_update_mode = 4
 
 [node name="main_menu" parent="screen_container/screen" instance=ExtResource("1_5cikp")]
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="border" type="TextureRect" parent="ui"]
+offset_left = -82.0
+offset_top = -84.0
+offset_right = 618.0
+offset_bottom = 416.0
+scale = Vector2(1.48, 1.418)
+mouse_filter = 2
+texture = ExtResource("3_gp8w2")
+stretch_mode = 4

@@ -89,6 +89,10 @@ color = Color(0.019554144, 0.019554138, 0.019554136, 1)
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
 
 [node name="code_lines" type="VBoxContainer" parent="margin_container" index="0"]
 modulate = Color(0, 1, 0, 1)

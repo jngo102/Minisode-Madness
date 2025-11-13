@@ -75,9 +75,18 @@ portraits = Array[Texture2D]([ExtResource("9_xfiq6"), ExtResource("3_wsf6i"), Ex
 music_list = Array[ExtResource("2_gvatp")]([ExtResource("3_xfiq6"), ExtResource("4_a4ssl"), ExtResource("5_073ry"), ExtResource("6_3itgs")])
 
 [node name="video_player" type="VideoStreamPlayer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
 stream = ExtResource("7_gvatp")
 
 [node name="volume_bar" parent="." instance=ExtResource("3_ijvw4")]
@@ -86,9 +95,9 @@ anchors_preset = 0
 anchor_top = 0.0
 anchor_bottom = 0.0
 offset_left = 32.0
-offset_top = 32.0
-offset_right = 104.0
-offset_bottom = 58.0
+offset_top = 49.0
+offset_right = 221.0
+offset_bottom = 153.0
 grow_vertical = 1
 
 [node name="portrait" type="TextureRect" parent="."]
@@ -113,10 +122,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -280.0
-offset_top = 43.0
-offset_right = 544.0
-offset_bottom = 325.0
+offset_left = -294.0
+offset_top = 69.0
+offset_right = 530.0
+offset_bottom = 351.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)

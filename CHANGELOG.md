@@ -1,6 +1,12 @@
 # Minigame Madness Change log
 
-## [0.4.0] - 2025-11-1
+## [0.5.0] - 2025-11-13
+
+### Added
+
+- TV border
+
+## [0.4.0] - 2025-11-12
 
 ### Added
 
