@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5csifcrytegw"]
+[gd_scene load_steps=10 format=3 uid="uid://b5csifcrytegw"]
 
 [ext_resource type="Script" uid="uid://dxwhkauicy0n2" path="res://game/scripts/ui/pause_menu.gd" id="1_78msb"]
 [ext_resource type="Shader" uid="uid://cxwgrnk28tuvt" path="res://game/resources/shaders/blur.gdshader" id="2_bgr1x"]
 [ext_resource type="PackedScene" uid="uid://xmhpn38awq6d" path="res://game/scenes/ui/menu_button.tscn" id="2_ig7np"]
 [ext_resource type="PackedScene" uid="uid://8agf2mc41tgx" path="res://game/scenes/ui/quit_warning.tscn" id="4_klkif"]
+[ext_resource type="PackedScene" uid="uid://vxk46hnnh0ba" path="res://game/scenes/ui/options_panel.tscn" id="5_16opm"]
 
 [sub_resource type="Animation" id="Animation_bcgww"]
 resource_name = "close"
@@ -126,8 +127,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 64
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
 [node name="menu_buttons" type="VBoxContainer" parent="panel/margin_container"]
 layout_mode = 2
@@ -137,6 +138,10 @@ alignment = 1
 layout_mode = 2
 text = "Resume"
 
+[node name="options_button" parent="panel/margin_container/menu_buttons" instance=ExtResource("2_ig7np")]
+layout_mode = 2
+text = "Options"
+
 [node name="quit_button" parent="panel/margin_container/menu_buttons" instance=ExtResource("2_ig7np")]
 layout_mode = 2
 text = "Quit"
@@ -145,8 +150,13 @@ text = "Quit"
 visible = false
 layout_mode = 2
 
+[node name="options_panel" parent="panel/margin_container" instance=ExtResource("5_16opm")]
+visible = false
+layout_mode = 2
+
 [connection signal="animation_finished" from="animator" to="." method="_on_animator_animation_finished"]
 [connection signal="pressed" from="panel/margin_container/menu_buttons/resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="panel/margin_container/menu_buttons/options_button" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="panel/margin_container/menu_buttons/quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="quit_canceled" from="panel/margin_container/quit_warning" to="." method="_on_quit_warning_quit_canceled"]
 [connection signal="quit_confirmed" from="panel/margin_container/quit_warning" to="." method="_on_quit_warning_quit_confirmed"]

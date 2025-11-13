@@ -1,6 +1,6 @@
 extends Panel
 
-@onready var settings_list: VBoxContainer = $content/settings_list
+@onready var settings_list: VBoxContainer = $content/options_list
 @onready var master_volume_slider: HSlider = settings_list.get_node_or_null("master_volume/value_slider")
 @onready var music_volume_slider: HSlider = settings_list.get_node_or_null("music_volume/value_slider")
 @onready var sfx_volume_slider: HSlider = settings_list.get_node_or_null("sfx_volume/value_slider")

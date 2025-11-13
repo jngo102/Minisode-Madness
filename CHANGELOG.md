@@ -1,4 +1,4 @@
-# Vinisodes Change log
+# Minigame Madness Change log
 
 ## [0.4.0] - 2025-11-1
 

@@ -35,7 +35,8 @@ var in_closeable_ui: bool:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		if not get_ui(TransitionScreen).visible and SceneManager.current_level.name != "main_menu":
+		var transition_screen := get_ui(TransitionScreen)
+		if is_instance_valid(transition_screen) and not transition_screen.visible and SceneManager.current_level.name != "main_menu":
 			var pause_menu: PauseMenu = get_ui(PauseMenu)
 			if pause_menu:
 				if pause_menu.visible:

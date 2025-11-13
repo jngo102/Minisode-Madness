@@ -19,6 +19,7 @@ font_size = 32
 font_size = 20
 
 [node name="flowerwall_pp" type="Control" node_paths=PackedStringArray("flowerwall_crt_config_ui", "dither", "preblur_x", "preblur_y", "post_bloom", "crt")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

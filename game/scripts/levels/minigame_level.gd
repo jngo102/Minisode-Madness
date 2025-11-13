@@ -6,6 +6,7 @@ enum ControlScheme {
 }
 
 @export var instruction: String = ""
+@export var start: String = "START!"
 @export var control_scheme: ControlScheme
 @export var music: MusicTrack
 
@@ -50,7 +51,7 @@ func _ready() -> void:
 func _start_game(time: float = 10, initial_wait: float = 2) -> void:
 	await get_tree().create_timer(initial_wait, false).timeout
 	MinigameManager.level_timer.start(time / MinigameManager.level)
-	label.text = "START!"
+	label.text = start
 	var label_tween: Tween = create_tween()
 	label_tween.tween_property(label, "position", Vector2(Globals.SCREEN_WIDTH / 2 - label.size.x / 2, 64), 0.25).from(Vector2(Globals.SCREEN_WIDTH / 2 - label.size.x, 64)).set_trans(Tween.TRANS_LINEAR)
 	label_tween.parallel().tween_property(label, "scale", Vector2.ONE, 0.25).from(Vector2.ONE * 2).set_trans(Tween.TRANS_LINEAR)

@@ -71,6 +71,7 @@ _data = {
 script = ExtResource("2_j2tlk")
 textures = Array[Texture2D]([ExtResource("3_vv4sy"), ExtResource("4_kxxxs"), ExtResource("5_3w2sg"), ExtResource("6_ienqp")])
 instruction = "Mute!"
+start = "SHUT EM UP!"
 control_scheme = 1
 music = ExtResource("7_kxxxs")
 

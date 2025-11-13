@@ -73,6 +73,62 @@ script = ExtResource("1_wmvsf")
 
 [node name="animator" type="AnimationPlayer" parent="."]
 
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+texture = ExtResource("2_bo16a")
+
+[node name="bubble" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+texture = ExtResource("3_32bhj")
+
+[node name="bubble_text" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+texture = SubResource("AnimatedTexture_syven")
+
+[node name="title" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+texture = ExtResource("6_32bhj")
+
+[node name="shroom" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+texture = SubResource("AnimatedTexture_0jfbc")
+
+[node name="sparkles" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+texture = SubResource("AnimatedTexture_fr21i")
+
+[node name="tv" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+texture = SubResource("AnimatedTexture_oyds6")
+
 [node name="margin_container" type="MarginContainer" parent="."]
 use_parent_material = true
 layout_mode = 1
@@ -92,34 +148,6 @@ theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
-
-[node name="background" type="TextureRect" parent="margin_container"]
-layout_mode = 2
-texture = ExtResource("2_bo16a")
-
-[node name="bubble" type="TextureRect" parent="margin_container"]
-layout_mode = 2
-texture = ExtResource("3_32bhj")
-
-[node name="bubble_text" type="TextureRect" parent="margin_container"]
-layout_mode = 2
-texture = SubResource("AnimatedTexture_syven")
-
-[node name="title" type="TextureRect" parent="margin_container"]
-layout_mode = 2
-texture = ExtResource("6_32bhj")
-
-[node name="shroom" type="TextureRect" parent="margin_container"]
-layout_mode = 2
-texture = SubResource("AnimatedTexture_0jfbc")
-
-[node name="sparkles" type="TextureRect" parent="margin_container"]
-layout_mode = 2
-texture = SubResource("AnimatedTexture_fr21i")
-
-[node name="tv" type="TextureRect" parent="margin_container"]
-layout_mode = 2
-texture = SubResource("AnimatedTexture_oyds6")
 
 [node name="control" type="Control" parent="margin_container"]
 layout_mode = 2

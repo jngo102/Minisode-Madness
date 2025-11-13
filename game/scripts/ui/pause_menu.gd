@@ -10,6 +10,7 @@ var main_menu_scene: PackedScene = preload("uid://vstl3bg568s7")
 @onready var background_blur: TextureRect = $background_blur
 ## Parent container of menu buttons list
 @onready var margin_container: MarginContainer = $panel/margin_container
+@onready var options_panel: Panel = margin_container.get_node_or_null("options_panel")
 ## Parent of the main pause menu buttons
 @onready var menu_buttons: VBoxContainer = margin_container.get_node_or_null("menu_buttons")
 ## A confirmation warning that appears when quitting the game
@@ -60,6 +61,9 @@ func _on_animator_animation_finished(anim_name: String) -> void:
 
 func _on_resume_button_pressed() -> void:
 	close()
+
+func _on_options_button_pressed() -> void:
+	options_panel.show()
 
 func _on_quit_button_pressed() -> void:
 	menu_buttons.hide()

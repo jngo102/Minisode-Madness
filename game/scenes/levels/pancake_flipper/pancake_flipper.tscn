@@ -310,6 +310,7 @@ frame_4/duration = 1.0
 script = ExtResource("2_10lhb")
 max_cook_time = 4.0
 instruction = "Flip!"
+start = "PRESS SPACE!"
 music = ExtResource("3_sp07d")
 
 [node name="anim" type="AnimationPlayer" parent="." index="0"]
