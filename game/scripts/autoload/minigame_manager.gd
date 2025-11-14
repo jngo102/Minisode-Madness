@@ -47,7 +47,8 @@ func load_random_level() -> void:
 		level_name = levels.keys()[level_index]
 		next_level = levels.values()[level_index]
 	current_level = await SceneManager.change_scene(next_level)
-	current_level.game_ended.connect(_on_game_end)
+	if current_level is MinigameLevel:
+		current_level.game_ended.connect(_on_game_end)
 	previous_levels.append(level_name)
 	if len(previous_levels) >= len(levels) - 1:
 		previous_levels.remove_at(0)
@@ -65,7 +66,7 @@ func _on_game_end() -> void:
 	if lives_left <= 0:
 		game_over()
 		return
-	if is_instance_valid(current_level):
+	if is_instance_valid(current_level) and current_level is MinigameLevel:
 		current_level.game_ended.disconnect(_on_game_end)
 	if last_game_won and games_won > 0 and games_won % speed_up_num_rounds == 0:
 		speed_up()
@@ -80,7 +81,7 @@ func speed_up() -> void:
 
 func end_game() -> void:
 	level_timer.stop()
-	if is_instance_valid(current_level):
+	if is_instance_valid(current_level) and current_level is MinigameLevel:
 		if not current_level.won_game:
 			current_level.lose()
 		current_level.end_game()

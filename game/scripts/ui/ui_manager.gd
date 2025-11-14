@@ -36,16 +36,12 @@ var in_closeable_ui: bool:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		var transition_screen := get_ui(TransitionScreen)
-		if is_instance_valid(transition_screen) and not transition_screen.visible and \
-			SceneManager.current_level.name != "main_menu" and \
-			SceneManager.current_level.name != "opening_cutscene":
+		if not is_open("fader") and not is_open("transition_screen") and \
+			is_instance_valid(SceneManager.current_level) and \
+			SceneManager.current_level is MinigameLevel:
 			var pause_menu: PauseMenu = get_ui(PauseMenu)
-			if pause_menu:
-				if pause_menu.visible:
-					pause_menu.close()
-				else:
-					pause_menu.open()
+			if is_instance_valid(pause_menu):
+				pause_menu.toggle()
 			else:
 				open_ui(PauseMenu)
  
@@ -94,11 +90,14 @@ func get_ui(ui: GDScript, start_closed: bool = true) -> BaseUI:
 		return instantiated_ui.get_script() == ui
 	)
 	if len(found_uis) > 0:
-		return found_uis[0]
+		var found_ui = found_uis[0]
+		if start_closed:
+			found_ui.hide()
+		return found_ui
 	else:
 		var new_ui: BaseUI = create_ui(ui)
 		if start_closed:
-			new_ui.close()
+			new_ui.hide()
 		return new_ui
 
 ## Open a UI
@@ -115,3 +114,7 @@ func close_all_uis() -> void:
 	for ui in opened_uis:
 		if not non_closeable_uis.any(func(non_closeable_ui): return non_closeable_ui == ui):
 			ui.close()
+
+func is_open(ui_name: String) -> bool:
+	return opened_uis.any(func(ui):
+		return ui.name == ui_name)

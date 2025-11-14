@@ -1,5 +1,11 @@
 # Minigame Madness Change log
 
+## [1.0.2] - 2025-11-13
+
+### Fixed
+
+- Variety of UI bugs
+
 ## [1.0.1] - 2025-11-13
 
 ### Fixed

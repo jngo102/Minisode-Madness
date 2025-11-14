@@ -22,14 +22,14 @@ var can_toggle: bool:
 		return not animator.is_playing()
 
 var last_mouse_mode: Input.MouseMode
+var pausing: bool
 
 func _ready() -> void:
 	var viewport_texture: ViewportTexture = get_viewport().get_texture()
 	background_blur.texture = ImageTexture.create_from_image(viewport_texture.get_image())
 
 func open() -> void:
-	if not can_toggle:
-		return
+	pausing = true
 	last_mouse_mode = Input.mouse_mode
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	show()
@@ -37,14 +37,13 @@ func open() -> void:
 	animator.play("open")
 	
 func close() -> void:
-	if not can_toggle:
-		return
+	pausing = false
 	Input.mouse_mode = last_mouse_mode
 	animator.play("close")
 	_on_quit_warning_quit_canceled()
 
 func toggle() -> void:
-	if hidden:
+	if not pausing:
 		open()
 	else:
 		close()
