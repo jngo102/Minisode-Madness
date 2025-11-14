@@ -1,5 +1,11 @@
 # Minigame Madness Change log
 
+## [1.0.1] - 2025-11-13
+
+### Fixed
+
+- Immediate error
+
 ## [1.0.0] - 2025-11-13
 
 ### Added

@@ -3,11 +3,13 @@ extends TextureRect
 @export var frames: Array[Texture2D]
 
 var main_menu_scene: PackedScene = preload("uid://vstl3bg568s7")
+var music: MusicTrack = preload("uid://dobsqjdtm61fm")
 
 var show_skip: bool
 var fading: bool
 
 func _ready() -> void:
+	AudioManager.play_music(music)
 	var anim_texture := AnimatedTexture.new()
 	anim_texture.frames = len(frames)
 	for i in range(0, len(frames)):
