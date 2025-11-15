@@ -12,4 +12,6 @@ func set_volume(amount: int) -> void:
 
 func _on_level_change(level: int) -> void:
 	var new_volume: int = level * 3
+	for segment in segments_container.get_children():
+		segment.hide()
 	set_volume(new_volume)
