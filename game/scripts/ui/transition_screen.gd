@@ -60,4 +60,5 @@ func _on_video_player_finished() -> void:
 	$static.hide()
 
 func _on_level_change(new_level: int) -> void:
-	speed_up.play("show")
+	if new_level > 1:
+		speed_up.play("show")
