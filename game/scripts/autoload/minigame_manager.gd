@@ -15,7 +15,7 @@ var lives_left: int
 var level: int = 1:
 	set(value):
 		level = value
-		if value > 1 and value <= 3:
+		if value >= 1 and value <= 3:
 			level_changed.emit(value)
 
 var current_level: Node
