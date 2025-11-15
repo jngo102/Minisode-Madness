@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://caru3xvtlc28v"]
+[gd_scene load_steps=10 format=3 uid="uid://caru3xvtlc28v"]
 
 [ext_resource type="Script" uid="uid://blyewbxin3uci" path="res://game/scripts/ui/hud/level_timer.gd" id="1_ki6ov"]
-[ext_resource type="Texture2D" uid="uid://dajk0ie2gn77g" path="res://game/assets/art/ui/bomb_timer/bomb0000.png" id="2_nx7lg"]
 [ext_resource type="Texture2D" uid="uid://c060h3aemwlef" path="res://game/assets/art/ui/bomb_timer/bomb0001.png" id="3_11muf"]
 [ext_resource type="Texture2D" uid="uid://bn8swc8xnhk6m" path="res://game/assets/art/ui/bomb_timer/bomb0002.png" id="4_yjcpl"]
 [ext_resource type="Texture2D" uid="uid://cvokxetkk552t" path="res://game/assets/art/ui/bomb_timer/bomb0003.png" id="5_3jrkv"]
@@ -15,4 +14,4 @@
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_ki6ov")
-countdown_textures = Array[Texture2D]([ExtResource("2_nx7lg"), ExtResource("3_11muf"), ExtResource("4_yjcpl"), ExtResource("5_3jrkv"), ExtResource("6_esv08"), ExtResource("7_pgs8q"), ExtResource("8_2n1f5"), ExtResource("9_lf0pe"), ExtResource("10_h1h45")])
+countdown_textures = Array[Texture2D]([ExtResource("3_11muf"), ExtResource("4_yjcpl"), ExtResource("5_3jrkv"), ExtResource("6_esv08"), ExtResource("7_pgs8q"), ExtResource("8_2n1f5"), ExtResource("9_lf0pe"), ExtResource("10_h1h45")])

@@ -9,6 +9,7 @@ var show_skip: bool
 var fading: bool
 
 func _ready() -> void:
+	SceneManager.current_level = self
 	AudioManager.play_music(music)
 	var anim_texture := AnimatedTexture.new()
 	anim_texture.frames = len(frames)

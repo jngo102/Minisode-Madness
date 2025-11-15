@@ -24,10 +24,11 @@ func _start_game(time: float = 10, initial_wait: float = 2) -> void:
 func lose() -> void:
 	super.lose()
 	ferris_wheel.stop_spin_sound()
+	ferris_wheel.is_grabbing = false
 	ferris_wheel.grab_collision.disabled = true
 
 func _on_ferris_wheel_unhinge() -> void:
-	AudioManager.play_clip(scream_clip, 0.85, 1.15, 0.5)
-	win()
+	AudioManager.play_clip(scream_clip, 0.85, 1.15, 0.85)
 	rotate_dir.hide()
+	win()
 	MinigameManager.end_game()
