@@ -4,6 +4,7 @@
 
 ### Fixed
 
+- Fix main menu music not looping
 - Fix game freezing when winning right as bomb timer explodes
 
 ## [1.0.2] - 2025-11-13

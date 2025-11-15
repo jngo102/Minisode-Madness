@@ -21,7 +21,8 @@ func _process(_delta: float) -> void:
 	if in_progress and not exploded:
 		var index := int(MinigameManager.time_left_in_level / MinigameManager.level_duration * len(countdown_textures))
 		texture = countdown_textures[index]
+		if index <= 0:
+			AudioManager.play_clip(explosion_clip)
 
 func _on_level_timer_timeout() -> void:
-	AudioManager.play_clip(explosion_clip)
 	exploded = true
